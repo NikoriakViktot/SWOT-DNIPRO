@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "name": "lower_dnipro_to_sea",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lower Dnipro — Kakhovka to Black Sea",
+        "note": "Covers river channel from Kakhovka dam area (~46.75N) down through Kherson (46.66N 32.68E) to the Black Sea mouth (~46.53N 32.26E). Includes Dnipro-Buh estuary."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [31.50, 46.20],
+            [34.50, 46.20],
+            [34.50, 47.50],
+            [31.50, 47.50],
+            [31.50, 46.20]
+          ]
+        ]
+      }
+    }
+  ]
+}

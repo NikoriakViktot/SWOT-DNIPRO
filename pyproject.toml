@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "swotdl"
+version = "0.1.0"
+description = "SWOT satellite data downloader via NASA CMR / Earthdata Bearer Token"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31",
+    "geopandas>=0.14",
+    "shapely>=2.0",
+    "pandas>=2.0",
+    "pyarrow>=14.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov",
+]
+notebook = [
+    "jupyter>=1.0",
+    "notebook>=7.0",
+    "matplotlib>=3.7",
+    "folium>=0.16",
+    "netCDF4>=1.6",
+    "xarray>=2023.1",
+    "seaborn>=0.12",
+    "openpyxl>=3.1",
+    "scipy>=1.11",
+    "contextily>=1.4",
+]
+
+[project.scripts]
+swotdl = "swotdl.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

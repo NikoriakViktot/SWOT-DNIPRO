@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "name": "kakhovka_reservoir",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kakhovka Reservoir (Каховське водосховище)",
+        "note": "Bounding polygon derived from Kakhovka_SA.geojson. For precise analysis replace with data/Kakhovka_SA.geojson."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [33.3524, 46.7556],
+            [35.3439, 46.7556],
+            [35.3439, 47.7774],
+            [33.3524, 47.7774],
+            [33.3524, 46.7556]
+          ]
+        ]
+      }
+    }
+  ]
+}

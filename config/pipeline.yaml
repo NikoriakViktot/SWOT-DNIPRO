@@ -1,0 +1,24 @@
+cmr:
+  base_url: "https://cmr.earthdata.nasa.gov/search/granules.json"
+  page_size: 200
+
+download:
+  timeout_sec: 120
+  connect_timeout_sec: 30
+  retries: 5
+  backoff_sec: 2.0
+  max_workers: 4
+
+defaults:
+  start: "2022-12-01"
+  end: "2026-03-05"
+  products:
+    - "SWOT_L2_HR_RiverSP_2.0"
+    - "SWOT_L2_HR_LakeSP_2.0"
+    - "SWOT_L2_HR_PIXC_2.0"
+
+paths:
+  data_root: "data"
+  raw_dir: "data/raw"
+  index_dir: "data/index"
+  log_dir: "data/logs"

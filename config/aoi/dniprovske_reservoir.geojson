@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "name": "dniprovske_reservoir",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dniprovske Reservoir (Дніпровське водосховище)",
+        "note": "Approximate bounding box. Center ~47.88N 35.10E. Replace with precise polygon if available."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [34.40, 47.50],
+            [35.60, 47.50],
+            [35.60, 48.55],
+            [34.40, 48.55],
+            [34.40, 47.50]
+          ]
+        ]
+      }
+    }
+  ]
+}
