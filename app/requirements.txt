@@ -1,0 +1,11 @@
+# Companion app only (Streamlit Community Cloud reads this file).
+# The research pipeline has its own extras in pyproject.toml.
+streamlit>=1.40
+pandas>=2.1
+numpy>=1.26
+scipy>=1.11
+plotly>=5.20
+geopandas>=0.14
+folium>=0.16
+branca>=0.7
+streamlit-folium>=0.20

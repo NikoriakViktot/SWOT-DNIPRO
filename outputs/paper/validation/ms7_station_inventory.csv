@@ -1,0 +1,8 @@
+station_id,name_en,first,last,n_days,n_days_post_breach,spans_breach
+80805,Kherson,2019-01-01,2025-12-31,2176,574,True
+80959,Rozumivka,2019-01-01,2025-12-31,2538,921,True
+80961,Plavni,2019-01-01,2021-12-31,1096,0,False
+80963,Blahovishchenka,2019-01-01,2021-12-31,1096,0,False
+80964,Nikopol,2019-01-01,2021-12-31,1096,0,False
+80971,Velyka Lepetykha,2019-01-01,2021-12-31,1096,0,False
+80977,Nova Kakhovka,2019-01-01,2021-12-31,1096,0,False

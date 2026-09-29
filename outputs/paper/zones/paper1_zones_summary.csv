@@ -1,0 +1,7 @@
+domain,letter,label,area_km2,geometry_hash_utm,geometry_hash_4326,n_parts,buffer_km
+R_FORMER_KAKHOVKA_RESERVOIR,R,Reservoir,2144.0,ec8f487a9c1e9aed,2544f08797d4744d,2.0,
+F_LOWER_DNIPRO_FLOODWAY,F,Floodway,2900.2,d658391e48d78e0a,1d1b614226a440fe,1.0,
+D_KHERSON_DELTA,D,Delta,976.2,3e2abb99b13cab77,2ccb7ce427418b40,1.0,
+E_DNIPRO_BUG_ESTUARY,E,Estuary,7460.2,05a605acde2516d2,08cc2ac161b26032,1.0,
+event_flood_2023_s1_envelope,,,1333.6,95b247588fc2e0b0,,,0.0
+event_flood_2023_s1_envelope_1km,,,3284.9,ac608ee114ae396f,,,1.0

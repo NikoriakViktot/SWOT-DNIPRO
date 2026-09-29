@@ -1,0 +1,19 @@
+claim_id,statistic,value
+SLOPE_GEOID_SAMPLING,n_dates,33
+SLOPE_GEOID_SAMPLING,n_pre,14
+SLOPE_GEOID_SAMPLING,n_post,14
+SLOPE_GEOID_SAMPLING,max_abs_dS_cm_km,1.1555904348522952
+SLOPE_GEOID_SAMPLING,median_dS_cm_km,-0.00638356218429692
+SLOPE_GEOID_SAMPLING,pre_median_bilinear,0.09047780078072731
+SLOPE_GEOID_SAMPLING,pre_median_nearest,0.09867331010270312
+SLOPE_GEOID_SAMPLING,post_median_bilinear,3.313669291997315
+SLOPE_GEOID_SAMPLING,post_median_nearest,3.327364956510881
+SLOPE_GEOID_SAMPLING,contrast_bilinear,3.2231914912165878
+SLOPE_GEOID_SAMPLING,contrast_nearest,3.2286916464081776
+SLOPE_GEOID_SAMPLING,post_positive_bilinear,14
+SLOPE_GEOID_SAMPLING,post_positive_nearest,14
+SLOPE_GEOID_SAMPLING,max_transect_shift_m,0.016386779081852154
+SLOPE_GEOID_SAMPLING,production_reproduced_by_bilinear_m,2.4868995751603507e-14
+SLOPE_GEOID_SAMPLING,pre_median_abs_dS_cm_km,0.0159628215272751
+SLOPE_GEOID_SAMPLING,post_median_abs_dS_cm_km,0.025093809600442683
+SLOPE_GEOID_SAMPLING,note_max,"max |dS| on 2024-07-27 (POST_BREACH): transect shifts <= 5.4 mm move a six-point Theil-Sen median across pairwise slopes; that fit's own 95 % CI is [-7.4, 32.4] cm/km"

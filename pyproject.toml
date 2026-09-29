@@ -20,9 +20,31 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+analysis = [
+    # everything scripts/ and swot_dnipro import that the core list never declared
+    # (audit 20260918T175108Z, F-23): a clean `pip install -e .` could not import
+    # sentinel_preprocess (rasterio) or run any p*/k*/hist* script.
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "rasterio>=1.3",
+    "pyproj>=3.6",
+    "scikit-image>=0.21",
+    "netCDF4>=1.6",
+    "xarray>=2023.1",
+    "earthengine-api>=0.1.380",
+    "pystac-client>=0.7",
+    "planetary-computer>=1.0",
+    "matplotlib>=3.7",
+]
 dev = [
     "pytest>=7.4",
     "pytest-cov",
+]
+manuscript = [
+    # ms3_build_pptx.py / ms4_qc.py import python-pptx; it was never declared and
+    # was absent from the venv until 2026-09-16, so the slide build and its QC
+    # could not have been run on this machine
+    "python-pptx>=1.0",
 ]
 notebook = [
     "jupyter>=1.0",

@@ -25,7 +25,7 @@ import warnings; warnings.filterwarnings('ignore')
 
 from pathlib import Path
 from collections import Counter
-import re, json
+import os, re, json
 
 import numpy as np
 import pandas as pd
@@ -63,8 +63,11 @@ cells.append(code("""\
 ROOT        = Path('..').resolve()
 DATA_DIR    = ROOT / 'data'
 RAW_DIR     = DATA_DIR / 'raw'
-LAKESP_DIR  = RAW_DIR / 'swot_l2_hr_lakesp_2.0'
-RIVERSP_DIR = RAW_DIR / 'swot_l2_hr_riversp_2.0'
+# Continent-wide originals under data/raw were deleted 2026-09-16 once
+# scripts/p22b_verify_ukraine_clip.py proved the Ukraine clip faithful (483 -> 35 GB).
+SWOT_UA     = Path(os.environ.get('SWOT_DNIPRO_BULK_ROOT', '/mnt/f/data_kakhovka_dem_swot')) / 'swot_ua'
+LAKESP_DIR  = SWOT_UA / 'swot_l2_hr_lakesp_2.0'
+RIVERSP_DIR = SWOT_UA / 'swot_l2_hr_riversp_2.0'
 FIG_DIR     = DATA_DIR / 'figures'
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 

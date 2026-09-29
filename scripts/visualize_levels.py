@@ -15,6 +15,7 @@ Produces:
 
 from __future__ import annotations
 
+import os
 import sys
 import warnings
 from pathlib import Path
@@ -36,8 +37,12 @@ ROOT = Path(__file__).parent.parent
 FIG_DIR = ROOT / "data" / "figures"
 FIG_DIR.mkdir(parents=True, exist_ok=True)
 INDEX_FILE = ROOT / "data" / "index" / "granules.parquet"
-LAKESP_DIR = ROOT / "data" / "raw" / "swot_l2_hr_lakesp_2.0"
-RIVERSP_DIR = ROOT / "data" / "raw" / "swot_l2_hr_riversp_2.0"
+# The continent-wide originals under data/raw were deleted 2026-09-16 after
+# scripts/p22b_verify_ukraine_clip.py proved the Ukraine clip a faithful subset
+# (483 GB -> 35 GB). Both products now live clipped on the bulk volume.
+_SWOT_UA = Path(os.environ.get("SWOT_DNIPRO_BULK_ROOT", "/mnt/f/data_kakhovka_dem_swot")) / "swot_ua"
+LAKESP_DIR = _SWOT_UA / "swot_l2_hr_lakesp_2.0"
+RIVERSP_DIR = _SWOT_UA / "swot_l2_hr_riversp_2.0"
 GAUGE_KAKH  = ROOT / "data" / "гідропости_каховка.xlsx"
 GAUGE_DNIPRO = ROOT / "data" / "гідропости_дніпровське.xlsx"
 
