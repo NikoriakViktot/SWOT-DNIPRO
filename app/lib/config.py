@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 # --- PRODUCTION: replace after deployment -------------------------------------
 REPO_URL = "https://github.com/NikoriakViktot/SWOT-DNIPRO"
-BRANCH = "paper1-v6"                 # links resolve on the release tag (immutable)
+BRANCH = "paper1-v6.1"               # links resolve on the release tag (immutable)
 APP_URL = "https://swot-dnipro.streamlit.app"   # placeholder until deployed
-RELEASE_TAG = "paper1-v6"
+RELEASE_TAG = "paper1-v6.1"
 RELEASE_URL = f"{REPO_URL}/releases/tag/{RELEASE_TAG}"   # v6.docx is a release asset, not in git
 # ------------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ FIGURE_STATUS = {
         "F16_closure_offsets.png", "F17_reference_surfaces.png", "F19_swot_icesat_egg2015_along_system.png",
         "F20_vertical_chains.png", "F21_covariability_scatter.png", "F22_gauge_network_correlation.png",
         "F23_slope_frame_invariance.png", "F24_station_panels.png", "F25_breach_fortnight_posts.png",
-        "F26_downstream_posts_2023.png")},
+        "F26_downstream_posts_2023.png", "F27_covariability_main.png", "F28_water_levels_main.png")},
     # slope / heterogeneity / drawdown figures: checked against the tables, unchanged
     **{f: ("verified — v5 image consistent with the tables", None) for f in (
         "F02_slope_per_overpass.png", "F04_heterogeneity.png", "F15_swot_drawdown_and_wave.png")},

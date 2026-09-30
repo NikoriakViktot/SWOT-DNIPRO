@@ -440,6 +440,8 @@ def _post_panel(ax, E, S, name, pid, lv, riv, xlim, shift_note=True):
         ax.plot(rv.index, rv.values, c="0.45", lw=0.9, ls="--", label="gauge, river yearbook")
     for sen, mk, col in (("ICESat-2 ATL13", "o", "#2a73c9"), ("SWOT RiverSP", "D", "#1aa37a")):
         q = v7[v7.sensor == sen]
+        if xlim:                                     # count what the panel shows
+            q = q[(q.date >= xlim[0]) & (q.date <= xlim[1])]
         ax.scatter(q.date, q.satellite_level_m + c, s=18, marker=mk, c=col, ec="w", lw=0.4, zorder=3,
                    label=f"{sen.split()[0]} {'RiverSP ' if 'SWOT' in sen else ''}+ c_pre (n={len(q)})")
     ax.axvspan(pd.Timestamp("2023-06-06"), pd.Timestamp("2023-06-30"), color="#f3d9cc", alpha=0.45, lw=0)
@@ -510,6 +512,127 @@ def f26(E, S):
     plt.close(fig)
 
 
+# ------------------------------------------------------------ F27 (main) --
+def f27(E, S):
+    """Main-text Figure 6: the satellites follow the water level through time.
+    (a) V2 within-station anomalies, (b) V3 SWOT at Rozumivka after the breach,
+    (c) V7 daily SWOT at the posts below the dam through the breach."""
+    from scipy import stats
+    plt.rcParams.update({"font.size": 12})
+    inc = E[E.included_primary.astype(bool)]
+    fig, ax = plt.subplots(1, 3, figsize=(17, 5.6))
+
+    v2 = inc[inc.claim_id == "V2_ATL13_GAUGE_COVARIABILITY"].copy()
+    v2["Ga"] = v2.gauge_level_m - v2.groupby("station").gauge_level_m.transform("mean")
+    v2["Ha"] = v2.satellite_level_m - v2.groupby("station").satellite_level_m.transform("mean")
+    for st, g in v2.groupby("station"):
+        ax[0].scatter(g.Ga, g.Ha, s=16, label=st, ec="w", lw=0.3)
+    r = _stat(S, claim_id="V2_ATL13_GAUGE_COVARIABILITY", statistic="pearson_r")
+    ts = _stat(S, claim_id="V2_ATL13_GAUGE_COVARIABILITY", statistic="theil_sen").value
+    rho = _stat(S, claim_id="V2_ATL13_GAUGE_COVARIABILITY", statistic="spearman_rho").value
+    m = float(np.abs(v2[["Ga", "Ha"]].values).max()) * 1.08
+    ax[0].plot([-m, m], [-m, m], c="0.6", ls="--", lw=0.8)
+    b, a, *_ = stats.theilslopes(v2.Ha, v2.Ga)
+    ax[0].plot([-m, m], [a - b * m, a + b * m], c="k", lw=1)
+    ax[0].text(0.03, 0.97, f"r = {r.value:.2f} [{r.ci_lo:.2f}, {r.ci_hi:.2f}]\nρ = {rho:.2f}\n"
+               f"Theil–Sen {ts:.2f}\nn = {len(v2)} overpasses", transform=ax[0].transAxes, va="top", fontsize=8.5,
+               bbox=dict(fc="w", ec="0.8", lw=0.5))
+    ax[0].set(xlim=(-m, m), ylim=(-m, m), xlabel="gauge anomaly, m", ylabel="ICESat-2 ATL13 anomaly, m",
+              title="(a) ATL13 at the six reservoir gauges, before the breach")
+    ax[0].legend(fontsize=6.5, loc="lower right", frameon=False)
+
+    v3 = inc[inc.claim_id == "V3_ROZUMIVKA_TRANSFER"]
+    kw = dict(claim_id="V3_ROZUMIVKA_TRANSFER", sensor="SWOT", radius_km=3.0, variant="raw_median")
+    ax[1].scatter(v3.gauge_level_m, v3.satellite_level_m, s=18, c="#e8643a", marker="D", ec="w", lw=0.3)
+    lo, hi = v3.gauge_level_m.min() - 0.2, v3.gauge_level_m.max() + 0.2
+    ax[1].plot([lo, hi], [lo, hi], c="0.6", ls="--", lw=0.8, label="1:1")
+    b, a, *_ = stats.theilslopes(v3.satellite_level_m, v3.gauge_level_m)
+    ax[1].plot([lo, hi], [a + b * lo, a + b * hi], c="k", lw=1, label="Theil–Sen")
+    ax[1].text(0.03, 0.97, f"r = {_stat(S, statistic='covar_pearson_r', **kw).value:.2f}\n"
+               f"ρ = {_stat(S, statistic='covar_spearman_rho', **kw).value:.2f}\n"
+               f"Theil–Sen {_stat(S, statistic='covar_theil_sen', **kw).value:.2f}\n"
+               f"range {_stat(S, statistic='covar_gauge_range_m', **kw).value:.2f} m\n"
+               f"n = {int(_stat(S, statistic='n', **kw).value)} passes", transform=ax[1].transAxes, va="top",
+               fontsize=8.5, bbox=dict(fc="w", ec="0.8", lw=0.5))
+    ax[1].set(xlabel="Rozumivka gauge, m EVRF2019", ylabel="SWOT RiverSP (≤3 km), m EGG2015",
+              title="(b) SWOT at Rozumivka after the breach, Aug 2023 – Apr 2025")
+    ax[1].legend(fontsize=7, loc="lower right", frameon=False)
+
+    v7 = inc[inc.claim_id == "V7_DOWNSTREAM_POSTS_2023"].copy()
+    v7["date"] = pd.to_datetime(v7.date)
+    g = pd.read_parquet(GAUGES)
+    g["date"] = pd.to_datetime(g.date)
+    riv = g[g.station_id == 80805].set_index("date").H_evrf2019_m
+    kh = E[(E.claim_id == "V7_DOWNSTREAM_POSTS_2023") & (E.station == "Kherson") & (E.sensor == "SWOT RiverSP")].copy()
+    kh["date"] = pd.to_datetime(kh.date)
+    kh = kh[kh.date.between("2023-06-13", "2023-07-08")].copy()
+    kh["G"] = kh.date.map(riv)
+    kh = kh[kh.gauge_level_m.isna()].dropna(subset=["G"])          # the river-yearbook-only days
+    V7 = S[S.claim_id == "V7_DOWNSTREAM_POSTS_2023"]
+    series = [("Kherson", kh.G, kh.satellite_level_m, "#2a73c9",
+               _stat(S, claim_id="V7_DOWNSTREAM_POSTS_2023", station="Kherson", statistic="pearson_r",
+                     variant="river yearbook only, 2023-06-13..07-08").value, len(kh), "13 Jun – 8 Jul, river yearbook")]
+    for st, col in (("Parutyne", "#1aa37a"), ("Mykolaiv", "#7a4f9e")):
+        q = v7[(v7.station == st) & (v7.sensor == "SWOT RiverSP") & (v7.period == "breach_fortnight")]
+        rr = V7[(V7.station == st) & (V7.sensor == "SWOT RiverSP") & (V7.period == "breach_fortnight")
+                & (V7.statistic == "pearson_r")].value.iloc[0]
+        series.append((st, q.gauge_level_m, q.satellite_level_m, col, rr, len(q), "6–30 June"))
+    for st, G, H, col, rr, n, win in series:
+        Ga, Ha = G - G.mean(), H - H.mean()
+        ax[2].scatter(Ga, Ha, s=18, c=col, ec="w", lw=0.3, label=f"{st} ({win}): r = {rr:.3f}, n = {n}")
+    ax[2].plot([-1, 2.6], [-1, 2.6], c="0.6", ls="--", lw=0.8)
+    ax[2].set(xlabel="gauge anomaly, m", ylabel="SWOT RiverSP anomaly, m",
+              title="(c) daily SWOT at posts below the dam through the breach")
+    ax[2].legend(fontsize=7, loc="upper left", frameon=False)
+    ax[2].set_xlim(-0.8, 2.5)
+    ax[2].set_ylim(-0.8, 2.5)
+    fig.tight_layout()
+    for e in ("png", "pdf"):
+        fig.savefig(FIG / f"F27_covariability_main.{e}", dpi=250, bbox_inches="tight")
+    plt.close(fig)
+    plt.rcParams.update({"font.size": 9})
+
+
+# ------------------------------------------------------------ F28 (main) --
+def f28(E, S):
+    """Main-text Figure 7: water level through time, gauges with SWOT and
+    ICESat-2. (a) Rozumivka 2019-2025, both satellites shifted by the
+    pre-breach ICESat-2 closure c_IS2 only (the V3 transfer test in time);
+    (b, c) Kherson and Parutyne through the breach, daily SWOT + c_pre."""
+    plt.rcParams.update({"font.size": 12})
+    inc = E[E.included_primary.astype(bool)]
+    fig = plt.figure(figsize=(16, 9))
+    gs = fig.add_gridspec(2, 2, height_ratios=[1, 1], hspace=0.35, wspace=0.18)
+    ax = fig.add_subplot(gs[0, :])
+    g = pd.read_parquet(GAUGES)
+    g["date"] = pd.to_datetime(g.date)
+    roz = g[g.station_id == 80959].set_index("date").H_evrf2019_m.reindex(pd.date_range("2019-01-01", "2025-12-31"))
+    c_is2 = _stat(S, claim_id="V3_ROZUMIVKA_TRANSFER", statistic="median_m", sensor="ICESat-2").value
+    v1r = inc[(inc.claim_id == "V1_ATL13_GAUGE_CLOSURE") & (inc.station == "Rozumivka")]
+    v3 = inc[inc.claim_id == "V3_ROZUMIVKA_TRANSFER"]
+    ax.plot(roz.index, roz.values, c="0.25", lw=0.9, label="Rozumivka gauge, daily (EVRF2019)")
+    ax.scatter(pd.to_datetime(v1r.date), v1r.satellite_level_m + c_is2, s=30, c="#2a73c9", zorder=3,
+               label=f"ICESat-2 ATL13, before the breach (n={len(v1r)})")
+    ax.scatter(pd.to_datetime(v3.date), v3.satellite_level_m + c_is2, s=26, marker="D", c="#e8643a", ec="w",
+               lw=0.3, zorder=3, label=f"SWOT RiverSP, after the breach (n={len(v3)})")
+    ax.axvline(pd.Timestamp("2023-06-06"), c="grey", ls=":", lw=1)
+    ax.set_ylabel("m EVRF2019")
+    ax.set_title(f"(a) Rozumivka 2019–2025: both satellites + the pre-breach ICESat-2 closure "
+                 f"c_IS2 = {100 * c_is2:+.1f} cm (SWOT not used to estimate it)", loc="left", fontsize=12)
+    ax.legend(fontsize=10, loc="lower left", frameon=False)
+    lv, riv = _gauge_2023()
+    for k, (name, pid) in enumerate((("Kherson", 80805), ("Parutyne", 98025))):
+        a = fig.add_subplot(gs[1, k])
+        _post_panel(a, E, S, name, pid, lv, riv, (pd.Timestamp("2023-05-18"), pd.Timestamp("2023-07-22")))
+        a.set_title(f"({'bc'[k]}) {a.get_title(loc='left')}", loc="left", fontsize=12)
+        a.tick_params(axis="x", rotation=30)
+        a.legend(fontsize=9, loc="upper right", frameon=False)
+    for e in ("png", "pdf"):
+        fig.savefig(FIG / f"F28_water_levels_main.{e}", dpi=250, bbox_inches="tight")
+    plt.close(fig)
+    plt.rcParams.update({"font.size": 9})
+
+
 def main():
     E, S = load()
     f16(E, S)
@@ -522,7 +645,9 @@ def main():
     f23(E, S)
     f25(E, S)
     f26(E, S)
-    print("F16, F17, F19, F20, F21, F22, F23, F24, F25, F26 ->", FIG.relative_to(ROOT))
+    f27(E, S)
+    f28(E, S)
+    print("F16, F17, F19, F20, F21, F22, F23, F24, F25, F26, F27, F28 ->", FIG.relative_to(ROOT))
 
 
 if __name__ == "__main__":

@@ -45,8 +45,12 @@ SUPERSEDED = [
     (r"reservoir gauge records end on 31 December 2021", ("five of the six",)),
     (r"reservoir series end on 31 December 2021", ("Five of the six",)),
 ]
-FIGS_FROM_TABLES = ["F16_closure_offsets.png", "F24_station_panels.png",
-                    "FS_V4_swot_icesat_agreement.png", "F18_swot_icesat_whole_zone_map.png"]
+FIGS_FROM_TABLES = ["F16_closure_offsets.png", "F24_station_panels.png", "F27_covariability_main.png", "F28_water_levels_main.png",
+                    "FS_V4_swot_icesat_agreement.png", "F18_swot_icesat_whole_zone_map.png",
+                    "F17_reference_surfaces.png", "F19_swot_icesat_egg2015_along_system.png",
+                    "F20_vertical_chains.png", "F21_covariability_scatter.png",
+                    "F22_gauge_network_correlation.png", "F23_slope_frame_invariance.png",
+                    "F25_breach_fortnight_posts.png", "F26_downstream_posts_2023.png"]
 
 
 def cm(v, sign=True, nd=1):
@@ -230,6 +234,12 @@ def main() -> int:
                     continue
                 fails += 1
                 print(f"  FOUND  line {i}: /{pat}/ ...{ctx}...")
+    print("== figure numbering follows order of appearance")
+    for kind in ("", "S"):
+        nums = [int(n) for n in re.findall(rf"\*\*Figure {kind}(\d+)\.\*\*", md)]
+        ok = nums == list(range(1, len(nums) + 1))
+        fails += not ok
+        print(f"  {'ok ' if ok else 'OUT OF ORDER'}  Figure {kind or 'main'}: {nums}")
     print("== figures newer than their tables")
     t = max((VAL / f).stat().st_mtime for f in ("ms7_evidence.csv", "ms7_summary.csv"))
     for f in FIGS_FROM_TABLES:
@@ -247,7 +257,7 @@ PIPELINE = ["scripts/ms5_paper1_zones.py", "scripts/ms6_paper1_figures.py",
             "scripts/ms6b_swot_icesat_crossings.py", "scripts/ms7_validation_paths.py",
             "scripts/ms7b_slope_geoid_sampling.py", "scripts/ms7c_validation_figures.py",
             "scripts/ms7d_manuscript_audit.py", "app/prepare_app_data.py"]
-MANUSCRIPT_VERSION = "v6"
+MANUSCRIPT_VERSION = "v6.1"
 
 
 def write_build_info(md_path: Path, n_claims: int) -> None:
