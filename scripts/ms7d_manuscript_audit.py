@@ -257,8 +257,9 @@ PIPELINE = ["scripts/ms5_paper1_zones.py", "scripts/ms6_paper1_figures.py",
             "scripts/ms6b_swot_icesat_crossings.py", "scripts/ms7_validation_paths.py",
             "scripts/ms7b_slope_geoid_sampling.py", "scripts/ms7c_validation_figures.py",
             "scripts/ms7d_manuscript_audit.py", "scripts/ms8_wind_setup_20230405.py",
+            "scripts/ms9_slope_sensitivity.py", "scripts/ms10_s2_fragmentation_sensitivity.py",
             "app/prepare_app_data.py", "app/prepare_app_s1_layers.py", "app/prepare_app_icesat2_passes.py"]
-MANUSCRIPT_VERSION = "v6.2-rc1"
+MANUSCRIPT_VERSION = "v6.2-rc2"
 
 
 def write_build_info(md_path: Path, n_claims: int) -> None:

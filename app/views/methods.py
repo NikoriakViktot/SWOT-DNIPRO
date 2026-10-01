@@ -42,6 +42,12 @@ st.markdown("""
 - **Closures (V1, V3, V6):** c = H_gauge(EVRF2019) − H_satellite(EGG2015, mean-tide crust), same calendar
   date against the daily gauge value (daily mean of the 08:00/20:00 terms, or the yearbook daily value); the
   independent unit is the beam transect (V1), the SWOT pass (V3, V6) or the overpass (V6 ICESat-2).
+- **Roles of the paths** — they are cross-checks, not independent proofs: V1, the pre-breach half of V3 and V6
+  *calibrate* the closure residual c; V2 and V7 on within-station anomalies, the 1970 survey and the three-route
+  datum test are *external validations* that c cannot create; V4 is a *cross-sensor consistency* check; V8, the
+  slope refits in alternative frames, the EGG2015 sampling test and the track-cluster / season tests (ms9) are
+  *sensitivity tests*. Satellite heights shown as H_S + c sit in a **gauge-anchored frame tied to EVRF2019**,
+  not in EVRF2019 in the geodetic sense.
 - **Co-variability (V2):** within-station anomalies, so no closure constant can create the association.
 - **Time windows** — the spread grows with separation while the median stays near zero:
 

@@ -26,6 +26,8 @@ different number.
 - `app/lib/data.py`, `app/lib/charts.py`, `app/lib/maps.py`: cached loaders, plotly charts and the folium map.
 - `app/views/{home,maps,validation,figures,reproducibility,methods}.py`
 - `app/prepare_app_data.py` → `outputs/paper/app_data/`: about 1 MB of tracked layers plus `manifest.json`.
+- `scripts/ms9_slope_sensitivity.py` → `outputs/paper/validation/ms9_*`: cluster bootstrap of the slope contrast by ground track, paired common tracks, season strata (reviewer round, v6.2-rc2).
+- `scripts/ms10_s2_fragmentation_sensitivity.py` → `outputs/paper/validation/ms10_*`: Sentinel-2 fragmentation counts across NDWI/MNDWI thresholds, minimum mapping unit and morphology, rebuilt from the per-scene index store.
 - `app/prepare_app_icesat2_passes.py` → `outputs/paper/app_data/icesat2_passes.geojson` (2 MB): ICESat-2 passes as ground tracks, one line per beam of one overpass, ATL13 in the three samples of the paper (period and QC from the pass-level tables) and ATL08 over the drained bed after the k10 QC; replaces the transect centroids on the study map.
 - `app/prepare_app_s1_layers.py` → `outputs/paper/app_data/s1/` (11 classed PNGs, 0.4 MB, rows resampled to Web-Mercator spacing so the Leaflet overlay registers exactly), `s1/manifest.json` (source sha256 and the floodstate-eo commit) and `s1_flood_dynamics.csv` (the p94 S1 table). Reads the sibling `floodstate-eo` checkout (`$FLOODSTATE_EO_ROOT`, else `../floodstate-eo`).
 - `app/requirements.txt`

@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 # --- PRODUCTION: replace after deployment -------------------------------------
 REPO_URL = "https://github.com/NikoriakViktot/SWOT-DNIPRO"
-BRANCH = "paper1-v6.2-rc1"           # links resolve on the release tag (immutable)
+BRANCH = "paper1-v6.2-rc2"           # links resolve on the release tag (immutable)
 APP_URL = "https://swot-dnipro.streamlit.app"   # Streamlit Community Cloud, branch paper1-release
-RELEASE_TAG = "paper1-v6.2-rc1"
+RELEASE_TAG = "paper1-v6.2-rc2"
 RELEASE_URL = f"{REPO_URL}/releases/tag/{RELEASE_TAG}"   # v6.docx is a release asset, not in git
 # ------------------------------------------------------------------------------
 
@@ -49,6 +49,8 @@ PIPELINE = [
     ("scripts/ms7c_validation_figures.py", "Figures 5, S2, S3, S5, S6 from the ms7 tables"),
     ("scripts/ms7d_manuscript_audit.py", "Manuscript ↔ tables ↔ figures consistency audit"),
     ("scripts/ms8_wind_setup_20230405.py", "ERA5 wind over the liman at the 5 April 2023 Kherson anomaly (p0e table)"),
+    ("scripts/ms9_slope_sensitivity.py", "Slope contrast: cluster bootstrap by ground track, paired tracks, season strata"),
+    ("scripts/ms10_s2_fragmentation_sensitivity.py", "Sentinel-2 fragmentation: thresholds, minimum mapping unit, morphology"),
     ("app/prepare_app_data.py", "The light data layer this app reads"),
     ("app/prepare_app_s1_layers.py", "The per-date Sentinel-1 flood layer, copied from floodstate-eo (p94/p98)"),
     ("app/prepare_app_icesat2_passes.py", "ICESat-2 passes as ground tracks: ATL13 (three samples) and ATL08 (k10 terrain)"),

@@ -115,7 +115,15 @@ BASEMAPS = {
     "Satellite (Esri World Imagery)": dict(
         tiles="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
         attr="Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"),
-    "Gray (CartoDB Positron)": dict(tiles="CartoDB positron", attr=None),
+    # CARTO basemaps answer without an API key with a 2 kB "API KEY REQUIRED" stub since 2026 (checked
+    # 2026-10-01: light_all and dark_all tiles both return the same placeholder), so the grey and dark
+    # canvases come from Esri, which needs no key.
+    "Gray (Esri Light Gray Canvas)": dict(
+        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+        attr="Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS User Community"),
+    "Dark (Esri Dark Gray Canvas)": dict(
+        tiles="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+        attr="Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS User Community"),
     "OpenStreetMap": dict(tiles="OpenStreetMap", attr=None),
 }
 
