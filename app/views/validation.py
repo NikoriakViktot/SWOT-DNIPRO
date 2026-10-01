@@ -116,7 +116,8 @@ with tabs[5]:
     table("V6_KHERSON_CLOSURE")
 
 with tabs[6]:
-    st.markdown("**V7 — posts below the dam, 2023.** Sea-yearbook daily levels against SWOT RiverSP (≤ 3 km) and "
+    st.markdown("**V7 — posts below the dam, 2023.** Sea-yearbook daily levels (daily means of the hourly record; "
+                "Oleksandrivka: term values; not instantaneous readings at the pass time) against SWOT RiverSP (≤ 3 km) and "
                 "ICESat-2 (≤ 10 km) by period; c_pre is each post's pre-breach SWOT closure, the shift in "
                 "Figures S8–S9. **V8 — reference surfaces** at the good SWOT node locations in R/F/D/E. "
                 "**Gauge network** — gauge-to-gauge co-variation, 2019–2021.")

@@ -12,7 +12,7 @@ different number.
 | Page | Contents |
 |---|---|
 | **Overview** | Title and abstract, parsed from the manuscript; an evidence-architecture diagram (gauges → ATL13 V1/V2, gauges → SWOT V3/V6, ATL13 ↔ SWOT V4); headline V1–V4 metrics and the slope/EGG2015 check; link buttons |
-| **Study area & maps** | Folium map with switchable layers: zones R/F/D/E, pre-breach water, June 2023 flood envelope (event layer), ATL13 transects by period, the SWOT calibration-orbit reach, the Rozumivka/Kherson closure supports, gauges and yearbook posts (Rozumivka and Kherson highlighted), and the V4 crossings coloured by SWOT − ICESat-2. Also the zone table (area and hash), observation geometry by zone, and the gauge-record timeline |
+| **Study area & maps** | Folium map with switchable layers: zones R/F/D/E, pre-breach water, June 2023 flood envelope (event layer), ATL13 transects by period, the SWOT calibration-orbit reach, the Rozumivka/Kherson closure supports, gauges and yearbook posts (Rozumivka and Kherson highlighted), and the V4 crossings coloured by SWOT − ICESat-2. Also the zone table (area and hash), observation geometry by zone, and the gauge-record timeline Below it, **Sentinel-1 flood dynamics by date**: the 11 June 2023 acquisitions as separate classed overlays (new dark water / dark water on pre-breach water / not observed that day) with a date slider, basemap choice, the p94 corridor numbers for the date, a per-region time series with coverage, and the full p94 table. The envelope on the study map is the union of these per-scene masks and is labelled as such |
 | **Validation paths V1–V6** | One tab per path: its question, headline metrics, an interactive chart and the raw summary rows. V3 is presented as two independent closures, then their comparison. V4 carries the warning that raw r rests on one high crossing in R, the anomaly correlation and the time-gap sensitivity. V5 LakeSP is kept separate. V6 Kherson covers ICESat-2, RiverSP and PIXC |
 | **Figures & tables** | The manuscript figures in text order with their captions, each marked **recomputed** or **carried from v5 — pending final rebuild**; the four tables with download buttons |
 | **Notebooks & reproducibility** | The ms5–ms7d pipeline with script docstrings and run order; the notebooks with GitHub and nbviewer links; output folders |
@@ -26,6 +26,8 @@ different number.
 - `app/lib/data.py`, `app/lib/charts.py`, `app/lib/maps.py`: cached loaders, plotly charts and the folium map.
 - `app/views/{home,maps,validation,figures,reproducibility,methods}.py`
 - `app/prepare_app_data.py` → `outputs/paper/app_data/`: about 1 MB of tracked layers plus `manifest.json`.
+- `app/prepare_app_icesat2_passes.py` → `outputs/paper/app_data/icesat2_passes.geojson` (2 MB): ICESat-2 passes as ground tracks, one line per beam of one overpass, ATL13 in the three samples of the paper (period and QC from the pass-level tables) and ATL08 over the drained bed after the k10 QC; replaces the transect centroids on the study map.
+- `app/prepare_app_s1_layers.py` → `outputs/paper/app_data/s1/` (11 classed PNGs, 0.4 MB, rows resampled to Web-Mercator spacing so the Leaflet overlay registers exactly), `s1/manifest.json` (source sha256 and the floodstate-eo commit) and `s1_flood_dynamics.csv` (the p94 S1 table). Reads the sibling `floodstate-eo` checkout (`$FLOODSTATE_EO_ROOT`, else `../floodstate-eo`).
 - `app/requirements.txt`
 - `tests/test_app_pages.py`: every page runs without an exception (AppTest).
 
@@ -42,6 +44,8 @@ streamlit run app/streamlit_app.py
 
 To refresh the data after the analysis changes, run the pipeline in the full research environment:
 ms5 → ms6 → ms7 → ms7b → ms7c → ms7d (must report 0 failures). Then run `python app/prepare_app_data.py`.
+The Sentinel-1 layer is refreshed separately with `python app/prepare_app_s1_layers.py` after floodstate-eo rebuilds its
+dashboard layers (`p98_dashboard_layers.py --only s1`) and the p94 table.
 
 ## Links
 
@@ -53,11 +57,11 @@ ms5 → ms6 → ms7 → ms7b → ms7c → ms7d (must report 0 failures). Then ru
 
 ## Pending
 
-1. **Commit and merge.** `app/`, `outputs/paper/` (zones, validation, app_data, figures, manuscript) and
-   `scripts/ms5…ms7d` must be committed and merged into the branch the links name. Decide whether the
-   `.docx` files belong in git (v3 5 MB, v5 4.7 MB, v6 9.9 MB); the app does not need them.
-2. **Deploy** to Streamlit Community Cloud with main file `app/streamlit_app.py` and requirements
-   `app/requirements.txt`. Then replace `APP_URL` in `app/lib/config.py` and in the README.
+1. ~~Commit and merge~~ — released as snapshots on `paper1-release` (v6, v6.1, v6.2-rc1); the `.docx` stays a
+   release asset, not in git.
+2. ~~Deploy~~ — live at https://swot-dnipro.streamlit.app from `paper1-release`. The per-date Sentinel-1 layer
+   (2026-10-01) is pinned to floodstate-eo commit `27564e7`; never deploy while `s1/manifest.json` says
+   `source_dirty: true`.
 3. **Eight figures carried from v5** (F02, F04, F15, F17, F22, F23, F25, F26) belong to sections the
    validation rebuild did not touch. The app labels them "carried from v5 — pending final rebuild".
 4. **Text numbers not yet re-derived by ms7** (visible in the manuscript, not in the app):

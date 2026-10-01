@@ -1,0 +1,86 @@
+{
+  "built_by": "app/prepare_app_icesat2_passes.py",
+  "gap_m": 3000.0,
+  "simplify_m": 100.0,
+  "clipped_to": "union of R_FORMER_KAKHOVKA_RESERVOIR, F_LOWER_DNIPRO_FLOODWAY, D_KHERSON_DELTA, E_DNIPRO_BUG_ESTUARY (registry) + 2000 m",
+  "sources": {
+    "atl13_reservoir_pass_levels": "kakhovka_atl13_pass_levels.parquet (60031306c1d9d6d9)",
+    "atl13_reservoir": "kakhovka_atl13_segments.parquet (d015d021aba79332)",
+    "atl13_kherson_pass_levels": "kherson_atl13_pass_levels.parquet (1deb7b5cfd362bd7)",
+    "atl13_kherson": "kherson_atl13_segments.parquet (35a32b95b1f41dbe)",
+    "atl13_estuary_pass_levels": "dnipro_estuary_atl13_pass_levels.parquet (50393ac2c5e15562)",
+    "atl13_estuary": "dnipro_estuary_atl13_segments.parquet (cc78b218cbc5ef38)",
+    "atl08_terrain": "data_swot/processed/atl08/kakhovka_atl08_terrain.parquet (92269d6ffc35f43a)"
+  },
+  "n_beam_tracks": 3829,
+  "n_passes_date_x_rgt": {
+    "ATL08 drained bed (k10)": 43,
+    "ATL13 estuary": 196,
+    "ATL13 kherson": 169,
+    "ATL13 reservoir": 322
+  },
+  "counts": [
+    {
+      "product": "ATL08",
+      "sample": "drained bed (k10)",
+      "period": "POST_BREACH",
+      "n_beam_tracks": 233
+    },
+    {
+      "product": "ATL13",
+      "sample": "estuary",
+      "period": "BREACH_DRAWDOWN",
+      "n_beam_tracks": 100
+    },
+    {
+      "product": "ATL13",
+      "sample": "estuary",
+      "period": "POST_BREACH",
+      "n_beam_tracks": 347
+    },
+    {
+      "product": "ATL13",
+      "sample": "estuary",
+      "period": "PRE_BREACH",
+      "n_beam_tracks": 641
+    },
+    {
+      "product": "ATL13",
+      "sample": "kherson",
+      "period": "BREACH_DRAWDOWN",
+      "n_beam_tracks": 67
+    },
+    {
+      "product": "ATL13",
+      "sample": "kherson",
+      "period": "POST_BREACH",
+      "n_beam_tracks": 250
+    },
+    {
+      "product": "ATL13",
+      "sample": "kherson",
+      "period": "PRE_BREACH",
+      "n_beam_tracks": 539
+    },
+    {
+      "product": "ATL13",
+      "sample": "reservoir",
+      "period": "BREACH_DRAWDOWN",
+      "n_beam_tracks": 136
+    },
+    {
+      "product": "ATL13",
+      "sample": "reservoir",
+      "period": "POST_BREACH",
+      "n_beam_tracks": 440
+    },
+    {
+      "product": "ATL13",
+      "sample": "reservoir",
+      "period": "PRE_BREACH",
+      "n_beam_tracks": 1076
+    }
+  ],
+  "bytes": 1493631,
+  "sha256": "a5901e4ed1b3966d"
+}

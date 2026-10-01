@@ -1,0 +1,45 @@
+date,sensor,orbit,region,region_km2,valid_km2,coverage,coverage_note,water_km2,new_water_km2,common_footprint_km2,new_water_common_footprint_km2,pre_breach_water_in_footprint_km2,region_label
+2023-06-01,S1,orb65_DES,DNIPRO_CORRIDOR,2743.7,2743.7,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,465.0,0.0,1521.7,0.0,582.5,Dnipro corridor
+2023-06-01,S1,orb65_DES,INHULETS_VALLEY_rect,565.8,565.8,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,47.0,0.0,465.3,0.0,90.7,Inhulets valley
+2023-06-01,S1,orb65_DES,P42_FLOODPLAIN_DOMAIN,538.5,538.5,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,122.5,0.0,329.8,0.0,149.6,terrain-eligible floodplain (p42)
+2023-06-02,S1,orb87_ASC,DNIPRO_CORRIDOR,2743.7,2608.1,0.951,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,506.1,0.0,1521.7,0.0,572.2,Dnipro corridor
+2023-06-02,S1,orb87_ASC,INHULETS_VALLEY_rect,565.8,565.8,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,80.4,0.0,465.3,0.0,90.7,Inhulets valley
+2023-06-02,S1,orb87_ASC,P42_FLOODPLAIN_DOMAIN,538.5,538.5,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,126.2,0.0,329.8,0.0,149.6,terrain-eligible floodplain (p42)
+2023-06-06,S1,orb138_DES,DNIPRO_CORRIDOR,2743.7,1697.4,0.619,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,365.5,30.3,1521.7,27.2,426.1,Dnipro corridor
+2023-06-06,S1,orb138_DES,INHULETS_VALLEY_rect,565.8,468.9,0.829,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,22.9,4.7,465.3,4.6,74.6,Inhulets valley
+2023-06-06,S1,orb138_DES,P42_FLOODPLAIN_DOMAIN,538.5,335.7,0.623,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,84.3,8.6,329.8,8.5,89.8,terrain-eligible floodplain (p42)
+2023-06-09,S1,orb14_ASC,DNIPRO_CORRIDOR,2743.7,2574.8,0.938,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,682.5,299.6,1521.7,250.3,500.4,Dnipro corridor
+2023-06-09,S1,orb14_ASC,INHULETS_VALLEY_rect,565.8,565.8,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,67.6,36.1,465.3,33.5,90.7,Inhulets valley
+2023-06-09,S1,orb14_ASC,P42_FLOODPLAIN_DOMAIN,538.5,533.4,0.991,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,329.6,202.9,329.8,162.6,144.8,terrain-eligible floodplain (p42)
+2023-06-13,S1,orb65_DES,DNIPRO_CORRIDOR,2743.7,2743.7,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,548.3,170.1,1521.7,129.9,582.5,Dnipro corridor
+2023-06-13,S1,orb65_DES,INHULETS_VALLEY_rect,565.8,565.8,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,36.2,27.0,465.3,26.8,90.7,Inhulets valley
+2023-06-13,S1,orb65_DES,P42_FLOODPLAIN_DOMAIN,538.5,538.5,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,279.4,152.3,329.8,115.2,149.6,terrain-eligible floodplain (p42)
+2023-06-14,S1,orb87_ASC,DNIPRO_CORRIDOR,2743.7,2608.8,0.951,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,510.3,97.4,1521.7,63.2,572.3,Dnipro corridor
+2023-06-14,S1,orb87_ASC,INHULETS_VALLEY_rect,565.8,565.8,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,36.5,25.4,465.3,25.4,90.7,Inhulets valley
+2023-06-14,S1,orb87_ASC,P42_FLOODPLAIN_DOMAIN,538.5,538.5,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,196.0,74.2,329.8,44.1,149.6,terrain-eligible floodplain (p42)
+2023-06-18,S1,orb138_DES,DNIPRO_CORRIDOR,2743.7,1694.5,0.618,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,404.6,51.7,1521.7,46.0,425.3,Dnipro corridor
+2023-06-18,S1,orb138_DES,INHULETS_VALLEY_rect,565.8,465.3,0.822,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,36.3,18.1,465.3,18.1,73.3,Inhulets valley
+2023-06-18,S1,orb138_DES,P42_FLOODPLAIN_DOMAIN,538.5,334.8,0.622,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,88.0,10.2,329.8,10.1,89.5,terrain-eligible floodplain (p42)
+2023-06-21,S1,orb14_ASC,DNIPRO_CORRIDOR,2743.7,2570.9,0.937,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,528.5,154.7,1521.7,112.0,498.6,Dnipro corridor
+2023-06-21,S1,orb14_ASC,INHULETS_VALLEY_rect,565.8,565.8,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,58.7,32.6,465.3,29.2,90.7,Inhulets valley
+2023-06-21,S1,orb14_ASC,P42_FLOODPLAIN_DOMAIN,538.5,533.4,0.991,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,144.6,22.3,329.8,11.1,144.8,terrain-eligible floodplain (p42)
+2023-06-25,S1,orb65_DES,DNIPRO_CORRIDOR,2743.7,2743.7,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,538.9,98.9,1521.7,44.2,582.5,Dnipro corridor
+2023-06-25,S1,orb65_DES,INHULETS_VALLEY_rect,565.8,565.8,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,45.8,25.8,465.3,22.0,90.7,Inhulets valley
+2023-06-25,S1,orb65_DES,P42_FLOODPLAIN_DOMAIN,538.5,538.5,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,148.0,21.4,329.8,9.5,149.6,terrain-eligible floodplain (p42)
+2023-06-26,S1,orb87_ASC,DNIPRO_CORRIDOR,2743.7,2612.2,0.952,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,364.5,24.3,1521.7,13.1,572.6,Dnipro corridor
+2023-06-26,S1,orb87_ASC,INHULETS_VALLEY_rect,565.8,565.8,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,37.4,23.3,465.3,22.8,90.7,Inhulets valley
+2023-06-26,S1,orb87_ASC,P42_FLOODPLAIN_DOMAIN,538.5,538.5,1.0,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,134.0,15.2,329.8,6.6,149.6,terrain-eligible floodplain (p42)
+2023-06-30,S1,orb138_DES,DNIPRO_CORRIDOR,2743.7,1698.5,0.619,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,383.8,66.8,1521.7,63.2,426.5,Dnipro corridor
+2023-06-30,S1,orb138_DES,INHULETS_VALLEY_rect,565.8,470.1,0.831,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,78.7,57.9,465.3,57.8,75.0,Inhulets valley
+2023-06-30,S1,orb138_DES,P42_FLOODPLAIN_DOMAIN,538.5,336.0,0.624,fraction of the S1 observable domain (union of all 11 footprints) seen on this date,94.8,16.5,329.8,16.4,90.0,terrain-eligible floodplain (p42)
+2023-06-01,S1,orb65_DES,ESTUARY_ZONE3_west_of_B2,7015.0,5224.5,0.745,,2323.0,0.0,,0.0,,"estuary (own grid, not on the map)"
+2023-06-02,S1,orb87_ASC,ESTUARY_ZONE3_west_of_B2,7015.0,7015.0,1.0,,3171.0,0.0,,0.0,,"estuary (own grid, not on the map)"
+2023-06-06,S1,orb138_DES,ESTUARY_ZONE3_west_of_B2,7015.0,7015.0,1.0,,3013.3,25.2,,0.1,,"estuary (own grid, not on the map)"
+2023-06-09,S1,orb14_ASC,ESTUARY_ZONE3_west_of_B2,7015.0,150.6,0.021,,10.7,8.8,,8.8,,"estuary (own grid, not on the map)"
+2023-06-13,S1,orb65_DES,ESTUARY_ZONE3_west_of_B2,7015.0,5220.7,0.744,,2325.0,8.4,,0.2,,"estuary (own grid, not on the map)"
+2023-06-14,S1,orb87_ASC,ESTUARY_ZONE3_west_of_B2,7015.0,7015.0,1.0,,3122.6,28.8,,0.2,,"estuary (own grid, not on the map)"
+2023-06-18,S1,orb138_DES,ESTUARY_ZONE3_west_of_B2,7015.0,7015.0,1.0,,3115.4,36.7,,0.6,,"estuary (own grid, not on the map)"
+2023-06-21,S1,orb14_ASC,ESTUARY_ZONE3_west_of_B2,7015.0,147.8,0.021,,27.9,26.4,,26.4,,"estuary (own grid, not on the map)"
+2023-06-25,S1,orb65_DES,ESTUARY_ZONE3_west_of_B2,7015.0,5221.5,0.744,,2321.0,12.7,,0.4,,"estuary (own grid, not on the map)"
+2023-06-26,S1,orb87_ASC,ESTUARY_ZONE3_west_of_B2,7015.0,7015.0,1.0,,3096.5,23.0,,0.1,,"estuary (own grid, not on the map)"
+2023-06-30,S1,orb138_DES,ESTUARY_ZONE3_west_of_B2,7015.0,7015.0,1.0,,2980.6,65.1,,3.4,,"estuary (own grid, not on the map)"

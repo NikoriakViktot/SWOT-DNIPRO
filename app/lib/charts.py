@@ -249,3 +249,44 @@ def zone_counts() -> go.Figure:
     fig.update_traces(texttemplate="%{text:.0f}")
     fig.update_layout(margin=dict(l=10, r=10, t=30, b=10), yaxis_title="")
     return fig
+
+
+# ------------------------------------------------------- Sentinel-1 flood --
+S1_REGION_COLOURS = {"DNIPRO_CORRIDOR": BLUE, "P42_FLOODPLAIN_DOMAIN": GREEN,
+                     "INHULETS_VALLEY_rect": ORANGE, "ESTUARY_ZONE3_west_of_B2": GREY}
+
+
+def s1_flood_dynamics(selected: str | None = None) -> go.Figure:
+    """New dark water per Sentinel-1 date and region (p94), with the coverage of
+    the observable domain on each date underneath. A date's area is for its
+    observed footprint only: not observed is not dry."""
+    d = D.s1_dynamics()
+    fig = make_subplots(rows=2, cols=1, shared_xaxes=True, row_heights=[0.72, 0.28], vertical_spacing=0.06)
+    for reg, g in d.groupby("region", sort=False):
+        g = g.sort_values("date")
+        fig.add_trace(go.Scatter(x=g.date, y=g.new_water_km2, mode="lines+markers", name=g.region_label.iloc[0],
+                                 line=dict(color=S1_REGION_COLOURS.get(reg, GREY), width=2),
+                                 marker=dict(size=7 + 5 * (g.coverage < 0.8), symbol="circle",
+                                             line=dict(width=1, color="white")),
+                                 customdata=g[["orbit", "coverage", "valid_km2", "water_km2"]],
+                                 hovertemplate="%{x|%d %b %Y} · %{customdata[0]}<br>new water %{y:.0f} km²"
+                                               "<br>coverage %{customdata[1]:.0%} (%{customdata[2]:,.0f} km² observed)"
+                                               "<br>all dark water %{customdata[3]:,.0f} km²<extra></extra>"),
+                      row=1, col=1)
+    cov = d[d.region == "DNIPRO_CORRIDOR"].sort_values("date")
+    fig.add_trace(go.Bar(x=cov.date, y=100 * cov.coverage, name="corridor coverage, %", marker_color="#c3c2b7",
+                         hovertemplate="%{x|%d %b} · observed %{y:.0f} % of the corridor<extra></extra>"),
+                  row=2, col=1)
+    for r in (1, 2):
+        fig.add_vline(x=BREACH, line_dash="dash", line_color="#c1402a", row=r, col=1)
+    fig.add_annotation(x=BREACH, y=1, yref="paper", text="breach 6 June", showarrow=False, xanchor="left",
+                       font=dict(color="#c1402a"))
+    if selected:
+        fig.add_vrect(x0=pd.Timestamp(selected) - pd.Timedelta(hours=12),
+                      x1=pd.Timestamp(selected) + pd.Timedelta(hours=12),
+                      fillcolor="#1f5fa8", opacity=0.12, line_width=0, row=1, col=1)
+    fig.update_yaxes(title_text="new dark water, km²", row=1, col=1)
+    fig.update_yaxes(title_text="observed, %", range=[0, 105], row=2, col=1)
+    fig.update_layout(height=460, margin=dict(l=10, r=10, t=30, b=10), hovermode="x unified",
+                      legend=dict(orientation="h", y=1.1))
+    return fig

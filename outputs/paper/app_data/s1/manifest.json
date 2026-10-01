@@ -1,0 +1,270 @@
+{
+  "built_by": "app/prepare_app_s1_layers.py",
+  "source_repository": "floodstate-eo",
+  "source_commit": "27564e7",
+  "source_dirty": false,
+  "source_workflows": [
+    "case_studies/kakhovka_2023/workflows/paper/p98_dashboard_layers.py (classed PNGs)",
+    "case_studies/kakhovka_2023/workflows/m6/p94_flood_dynamics.py (per-date table)"
+  ],
+  "product": "p0v/p0w M3 per-scene Sentinel-1 dark-water masks (20 m zone caches), B1 ∪ B2 frames; new = dark water that was not water on 1–2 June 2023",
+  "caveats": [
+    "not observed is not dry: class 3 is where the sensor did not look on that date",
+    "dark water = low VV/VH backscatter: smooth sand, bare fields and wet soil can be dark (false water)",
+    "water under forest and reed is invisible to the sensor",
+    "the estuary (zone E) is on its own grid in p94 and is not drawn"
+  ],
+  "grid": {
+    "crs": "EPSG:4326",
+    "bounds": [
+      [
+        46.35,
+        32.15
+      ],
+      [
+        47.15,
+        33.55
+      ]
+    ],
+    "nx": 1400,
+    "ny": 1111,
+    "rows": "resampled to equal Web-Mercator spacing (nearest) for an exact Leaflet overlay"
+  },
+  "legend": {
+    "1": "new dark water (not water on 1–2 June)",
+    "2": "dark water on pre-breach water",
+    "3": "not observed on this date (observable domain)"
+  },
+  "palette": {
+    "1": "#1f5fa8",
+    "2": "#b9c7d6",
+    "3": "#dcd9d2"
+  },
+  "regions": {
+    "DNIPRO_CORRIDOR": "Dnipro corridor",
+    "P42_FLOODPLAIN_DOMAIN": "terrain-eligible floodplain (p42)",
+    "INHULETS_VALLEY_rect": "Inhulets valley",
+    "ESTUARY_ZONE3_west_of_B2": "estuary (own grid, not on the map)"
+  },
+  "layers": [
+    {
+      "date": "2023-06-01",
+      "file": "s1/2023-06-01.png",
+      "orbit": "orb65_DES",
+      "bytes": 32410,
+      "sha256": "738d8c6e8f46c86705ec2392aed523d07369b35dcc95061652739b1a03c928b2",
+      "corridor_new_water_km2": 0.0,
+      "corridor_new_water_common_footprint_km2": 0.0,
+      "corridor_coverage": 1.0,
+      "corridor_water_km2": 465.0
+    },
+    {
+      "date": "2023-06-02",
+      "file": "s1/2023-06-02.png",
+      "orbit": "orb87_ASC",
+      "bytes": 38278,
+      "sha256": "0b78fc6e7e13df60c1382cd94804fd53c5aca325df5305dbedc61dbf424438cf",
+      "corridor_new_water_km2": 0.0,
+      "corridor_new_water_common_footprint_km2": 0.0,
+      "corridor_coverage": 0.951,
+      "corridor_water_km2": 506.1
+    },
+    {
+      "date": "2023-06-06",
+      "file": "s1/2023-06-06.png",
+      "orbit": "orb138_DES",
+      "bytes": 31456,
+      "sha256": "0cb9634797504afd9b2a217980a9e464724dede3ef1d635af3abdcdc2c87f75a",
+      "corridor_new_water_km2": 30.3,
+      "corridor_new_water_common_footprint_km2": 27.2,
+      "corridor_coverage": 0.619,
+      "corridor_water_km2": 365.5
+    },
+    {
+      "date": "2023-06-09",
+      "file": "s1/2023-06-09.png",
+      "orbit": "orb14_ASC",
+      "bytes": 51018,
+      "sha256": "00b44f1641b2799e5ee6fff9a589ee1bd58ae4d5de57e5419037da8b0cce2680",
+      "corridor_new_water_km2": 299.6,
+      "corridor_new_water_common_footprint_km2": 250.3,
+      "corridor_coverage": 0.938,
+      "corridor_water_km2": 682.5
+    },
+    {
+      "date": "2023-06-13",
+      "file": "s1/2023-06-13.png",
+      "orbit": "orb65_DES",
+      "bytes": 32031,
+      "sha256": "ff2b9bb8802bd3535e750c9e7046e6ace552eb9d422cbc41e786cb965fdc0c18",
+      "corridor_new_water_km2": 170.1,
+      "corridor_new_water_common_footprint_km2": 129.9,
+      "corridor_coverage": 1.0,
+      "corridor_water_km2": 548.3
+    },
+    {
+      "date": "2023-06-14",
+      "file": "s1/2023-06-14.png",
+      "orbit": "orb87_ASC",
+      "bytes": 34940,
+      "sha256": "983ca4a98b3603d6790a4b5a92bce35519f7aa6003be3074161fb346897b13b4",
+      "corridor_new_water_km2": 97.4,
+      "corridor_new_water_common_footprint_km2": 63.2,
+      "corridor_coverage": 0.951,
+      "corridor_water_km2": 510.3
+    },
+    {
+      "date": "2023-06-18",
+      "file": "s1/2023-06-18.png",
+      "orbit": "orb138_DES",
+      "bytes": 34085,
+      "sha256": "841b7a0b0cb2d9a808c4e335bba0f1be12c5233a5aee5d70153d56f56e4141cd",
+      "corridor_new_water_km2": 51.7,
+      "corridor_new_water_common_footprint_km2": 46.0,
+      "corridor_coverage": 0.618,
+      "corridor_water_km2": 404.6
+    },
+    {
+      "date": "2023-06-21",
+      "file": "s1/2023-06-21.png",
+      "orbit": "orb14_ASC",
+      "bytes": 49610,
+      "sha256": "e0aa4b0cd6270d7c62fca94d7f4d02cb25eb1de873dffc5754d8315c52c8dbb6",
+      "corridor_new_water_km2": 154.7,
+      "corridor_new_water_common_footprint_km2": 112.0,
+      "corridor_coverage": 0.937,
+      "corridor_water_km2": 528.5
+    },
+    {
+      "date": "2023-06-25",
+      "file": "s1/2023-06-25.png",
+      "orbit": "orb65_DES",
+      "bytes": 44786,
+      "sha256": "e8338f1f1105f35c2f592b65dcd2f5d00219dba0e96e0520b0c7602263192779",
+      "corridor_new_water_km2": 98.9,
+      "corridor_new_water_common_footprint_km2": 44.2,
+      "corridor_coverage": 1.0,
+      "corridor_water_km2": 538.9
+    },
+    {
+      "date": "2023-06-26",
+      "file": "s1/2023-06-26.png",
+      "orbit": "orb87_ASC",
+      "bytes": 29546,
+      "sha256": "e7892c2698e3b6879903010446cb53163997fb1ae5cd24288a2c0b20bf9fafb3",
+      "corridor_new_water_km2": 24.3,
+      "corridor_new_water_common_footprint_km2": 13.1,
+      "corridor_coverage": 0.952,
+      "corridor_water_km2": 364.5
+    },
+    {
+      "date": "2023-06-30",
+      "file": "s1/2023-06-30.png",
+      "orbit": "orb138_DES",
+      "bytes": 42758,
+      "sha256": "f12bf925ff419a10a6cfa651fe6c1ec05d3d160ba2a830e4a861263b8e05ae08",
+      "corridor_new_water_km2": 66.8,
+      "corridor_new_water_common_footprint_km2": 63.2,
+      "corridor_coverage": 0.619,
+      "corridor_water_km2": 383.8
+    }
+  ],
+  "sources": {
+    "new/2023-06-01": {
+      "file": "apps/dashboard/data/s1/2023-06-01_new.png",
+      "sha256": "d547b626cc7917f937403f90f92fc24c5f823047359588bbe67f1673f52abe72"
+    },
+    "footprint/2023-06-01": {
+      "file": "apps/dashboard/data/s1/2023-06-01_footprint.png",
+      "sha256": "4b6bf53e3d2e8230c9223d6ac8da74c69deac85ce47685e125710a8876e675e9"
+    },
+    "new/2023-06-02": {
+      "file": "apps/dashboard/data/s1/2023-06-02_new.png",
+      "sha256": "901c7a9822a3cfe15783c1ad88029cd782eeae0bacd5024c5af82f3b86457708"
+    },
+    "footprint/2023-06-02": {
+      "file": "apps/dashboard/data/s1/2023-06-02_footprint.png",
+      "sha256": "809361aa78c7d7e4fc4f66796e110f346e3adcd51d1a11aee6176df171b1ad88"
+    },
+    "new/2023-06-06": {
+      "file": "apps/dashboard/data/s1/2023-06-06_new.png",
+      "sha256": "42c623c8f22ff714f6409300c728d49f46c3fba2760324f0fcd2982b4e06847c"
+    },
+    "footprint/2023-06-06": {
+      "file": "apps/dashboard/data/s1/2023-06-06_footprint.png",
+      "sha256": "fca75f8edcc2b5b654cbd55414cd654ee0054277164fa24b10bc263923e1952d"
+    },
+    "new/2023-06-09": {
+      "file": "apps/dashboard/data/s1/2023-06-09_new.png",
+      "sha256": "ad98e4e3da217d0af5354b236fc96ca66c3b9a1b63f4bb7d51e8d0e5be9ef961"
+    },
+    "footprint/2023-06-09": {
+      "file": "apps/dashboard/data/s1/2023-06-09_footprint.png",
+      "sha256": "83c18dadbd26afa2b0917f81646ff1dc5512df896091fa86fed18cb9f4dbf25c"
+    },
+    "new/2023-06-13": {
+      "file": "apps/dashboard/data/s1/2023-06-13_new.png",
+      "sha256": "ddd314072dadc786eb68c6e0614970160ce730515c5c5c888b68251328aca46c"
+    },
+    "footprint/2023-06-13": {
+      "file": "apps/dashboard/data/s1/2023-06-13_footprint.png",
+      "sha256": "4b6bf53e3d2e8230c9223d6ac8da74c69deac85ce47685e125710a8876e675e9"
+    },
+    "new/2023-06-14": {
+      "file": "apps/dashboard/data/s1/2023-06-14_new.png",
+      "sha256": "20a6a8ea7c51e36660891f9a45967b85bbfb1fe5eaf17bc204c1dfb1daa0d509"
+    },
+    "footprint/2023-06-14": {
+      "file": "apps/dashboard/data/s1/2023-06-14_footprint.png",
+      "sha256": "553aadd4a211efdc5771cc80fd33302c434259d7c19f80c6e8948b8c41b592ae"
+    },
+    "new/2023-06-18": {
+      "file": "apps/dashboard/data/s1/2023-06-18_new.png",
+      "sha256": "30d9e8dd51d7c4e7dcab907ed09bb76d783b20c97b0c8e5e1b6d37a738f6c069"
+    },
+    "footprint/2023-06-18": {
+      "file": "apps/dashboard/data/s1/2023-06-18_footprint.png",
+      "sha256": "c4a21da204d9bd8b46d3b7d70d2e89f83fb788a0ec03e1a07b673095a06cce6d"
+    },
+    "new/2023-06-21": {
+      "file": "apps/dashboard/data/s1/2023-06-21_new.png",
+      "sha256": "0e1b809e2266588a6d4386cd25cdebd0db67468b2b9397bc0ecf54daf0eecde0"
+    },
+    "footprint/2023-06-21": {
+      "file": "apps/dashboard/data/s1/2023-06-21_footprint.png",
+      "sha256": "bd4ed9e39e75313357e32f06199ccb8c3b8aa376fcef40d1a4c4424c1357a910"
+    },
+    "new/2023-06-25": {
+      "file": "apps/dashboard/data/s1/2023-06-25_new.png",
+      "sha256": "8010ac6739e2af86f0b0a849830f2f3840c830a365135a98829e365bcfbf5db9"
+    },
+    "footprint/2023-06-25": {
+      "file": "apps/dashboard/data/s1/2023-06-25_footprint.png",
+      "sha256": "4b6bf53e3d2e8230c9223d6ac8da74c69deac85ce47685e125710a8876e675e9"
+    },
+    "new/2023-06-26": {
+      "file": "apps/dashboard/data/s1/2023-06-26_new.png",
+      "sha256": "cc54e123d9836a7a3e1ef16fb9c983ce3ee726052c5aab5e7b611c271dcff875"
+    },
+    "footprint/2023-06-26": {
+      "file": "apps/dashboard/data/s1/2023-06-26_footprint.png",
+      "sha256": "c89361091142539c7dc3894bca5f9921bd2312c398639bc039dd52d9405e2e58"
+    },
+    "new/2023-06-30": {
+      "file": "apps/dashboard/data/s1/2023-06-30_new.png",
+      "sha256": "0c311b5505e70f3cae2d8b76611b3ad86be2a2fe58dacb84c3d2ba8bf41238fb"
+    },
+    "footprint/2023-06-30": {
+      "file": "apps/dashboard/data/s1/2023-06-30_footprint.png",
+      "sha256": "f6eaf5e04c4e09864181dc06103ac53324f2165800911b2d2aee5182479e0fe0"
+    },
+    "p94_table": {
+      "file": "case_studies/kakhovka_2023/tables/p94_flood_dynamics_s1.csv",
+      "sha256": "97ff9bf3654288ee6994363a7bcced4e3777c9e06b5dbf4fae272ad28486f6fe"
+    },
+    "p94_table_estuary": {
+      "file": "case_studies/kakhovka_2023/tables/p94_flood_dynamics_estuary_s1.csv",
+      "sha256": "e88909456a11999491325f60e473fc7d481b279a731c000b9e903ad075fe2dfb"
+    }
+  }
+}

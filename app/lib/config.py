@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 # --- PRODUCTION: replace after deployment -------------------------------------
 REPO_URL = "https://github.com/NikoriakViktot/SWOT-DNIPRO"
-BRANCH = "paper1-v6.1"               # links resolve on the release tag (immutable)
-APP_URL = "https://swot-dnipro.streamlit.app"   # placeholder until deployed
-RELEASE_TAG = "paper1-v6.1"
+BRANCH = "paper1-v6.2-rc1"           # links resolve on the release tag (immutable)
+APP_URL = "https://swot-dnipro.streamlit.app"   # Streamlit Community Cloud, branch paper1-release
+RELEASE_TAG = "paper1-v6.2-rc1"
 RELEASE_URL = f"{REPO_URL}/releases/tag/{RELEASE_TAG}"   # v6.docx is a release asset, not in git
 # ------------------------------------------------------------------------------
 
@@ -34,6 +34,9 @@ SLOPE_SAMPLING = VALIDATION / "ms7b_slope_geoid_sampling_summary.csv"
 SLOPE_FRAMES = VALIDATION / "ms7b_slope_frames_summary.csv"
 BUILD_INFO = VALIDATION / "build_info.json"
 ZONE_MANIFEST = ZONES / "paper1_zones_manifest.json"
+S1_DIR = APP_DATA / "s1"                      # per-date Sentinel-1 flood layer (app/prepare_app_s1_layers.py)
+S1_MANIFEST = S1_DIR / "manifest.json"
+S1_DYNAMICS = APP_DATA / "s1_flood_dynamics.csv"
 
 # the scripts that make every number and figure of the paper's validation
 PIPELINE = [
@@ -45,7 +48,10 @@ PIPELINE = [
     ("scripts/ms7b_slope_geoid_sampling.py", "Headline slope vs EGG2015 sampling (nearest / bilinear)"),
     ("scripts/ms7c_validation_figures.py", "Figures 5, S2, S3, S5, S6 from the ms7 tables"),
     ("scripts/ms7d_manuscript_audit.py", "Manuscript ↔ tables ↔ figures consistency audit"),
+    ("scripts/ms8_wind_setup_20230405.py", "ERA5 wind over the liman at the 5 April 2023 Kherson anomaly (p0e table)"),
     ("app/prepare_app_data.py", "The light data layer this app reads"),
+    ("app/prepare_app_s1_layers.py", "The per-date Sentinel-1 flood layer, copied from floodstate-eo (p94/p98)"),
+    ("app/prepare_app_icesat2_passes.py", "ICESat-2 passes as ground tracks: ATL13 (three samples) and ATL08 (k10 terrain)"),
 ]
 
 # figure status: how each figure of the manuscript was produced

@@ -59,7 +59,7 @@ ZTEXT = {
     "E": "E  Estuary: Dnipro–Buh estuary",
 }
 WATER = "#7aa3bd"
-PRE, POST = "#1f6f8b", "#2e7d32"
+PRE, POST = "#f5c518", "#d7191c"   # yellow before the breach, red after: both read on blue water
 GAUGE = "#b5651d"
 DAM = "#c0392b"
 # The four 2023 yearbook posts below the dam that the paper uses (Section 5.12)
@@ -108,9 +108,9 @@ def fig_study_area() -> None:
     Z["R"].boundary.plot(ax=ax, color=ZSTYLE["R"][1], lw=0.8, zorder=6)
     water.plot(ax=ax, fc=WATER, ec="none", alpha=0.85, zorder=2)
     env_in_f.plot(ax=ax, fc=ZSTYLE["F"][1], ec="none", alpha=0.45, zorder=3)
-    ax.scatter(seg.lon[~post], seg.lat[~post], s=0.3, c=PRE, lw=0, zorder=4,
+    ax.scatter(seg.lon[~post], seg.lat[~post], s=0.5, c=PRE, lw=0, zorder=4,
                rasterized=True)
-    ax.scatter(seg.lon[post], seg.lat[post], s=0.3, c=POST, lw=0, zorder=5,
+    ax.scatter(seg.lon[post], seg.lat[post], s=0.5, c=POST, lw=0, zorder=5,
                rasterized=True)
 
     # zone letters at a representative interior point

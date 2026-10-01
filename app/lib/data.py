@@ -65,6 +65,24 @@ def layer(name: str) -> gpd.GeoDataFrame | pd.DataFrame:
     return gpd.read_file(p) if p.suffix == ".geojson" else pd.read_csv(p)
 
 
+@st.cache_data
+def icesat2_passes_manifest() -> dict:
+    return json.loads((C.APP_DATA / "icesat2_passes_manifest.json").read_text())
+
+
+@st.cache_data
+def s1_manifest() -> dict:
+    return json.loads(C.S1_MANIFEST.read_text())
+
+
+@st.cache_data
+def s1_dynamics() -> pd.DataFrame:
+    """p94 per-date Sentinel-1 numbers by region (floodstate-eo), with the date parsed."""
+    d = pd.read_csv(C.S1_DYNAMICS)
+    d["date"] = pd.to_datetime(d.date)
+    return d
+
+
 def stat(**kw) -> pd.Series:
     """One row of the ms7 summary; keyword None means 'column is empty'.
     Raises if the selection is not exactly one row, so a changed table can
