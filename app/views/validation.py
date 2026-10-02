@@ -3,6 +3,7 @@ import streamlit as st
 from lib import charts as K
 from lib import config as C
 from lib import data as D
+from lib import state as S
 
 st.title("Validation paths V1–V6")
 st.markdown(
@@ -20,7 +21,9 @@ def table(claim, **extra):
         st.dataframe(s.drop(columns=["claim_id"]), hide_index=True, width="stretch")
 
 
-tabs = st.tabs(list(C.CLAIMS.values()))
+_labels = list(C.CLAIMS.values())
+S.init("f_validation_tab", _labels[0], _labels)
+tabs = st.tabs(_labels, key="f_validation_tab", on_change="rerun")
 
 with tabs[0]:
     st.markdown("**Question:** does the ATL13 height sit right? Absolute closure of ATL13 against the six "

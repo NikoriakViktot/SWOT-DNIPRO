@@ -6,6 +6,7 @@ from lib import charts as K
 from lib import config as C
 from lib import data as D
 from lib import maps as M
+from lib import state as S
 
 st.title("Study area & maps")
 st.markdown(
@@ -18,7 +19,8 @@ st.markdown(
     "drained bed that the companion terrain work uses (not part of this paper; off by default). Hover a "
     "track for product, sample, date, RGT, beam and QC. Use the layer control (top right) to switch layers.")
 
-show_x = st.toggle("Show SWOT–ICESat-2 crossings (V4)", value=True)
+S.init("f_maps_crossings", True)
+show_x = st.toggle("Show SWOT–ICESat-2 crossings (V4)", key="f_maps_crossings")
 st_folium(M.study_map(show_crossings=show_x), height=640, use_container_width=True, returned_objects=[])
 
 # ---------------------------------------------------------------- Sentinel-1 flood by date --
@@ -39,15 +41,18 @@ st.markdown(
     "speckle on the terrace north of the river), and water under forest and reed is invisible to the sensor.")
 c1, c2, c3, c4 = st.columns([2, 1, 1, 1])
 with c1:
-    s1_date = st.select_slider("Acquisition date", options=dates,
-                               value="2023-06-09" if "2023-06-09" in dates else dates[0],
+    S.init("f_s1_date", "2023-06-09" if "2023-06-09" in dates else dates[0], dates)
+    s1_date = st.select_slider("Acquisition date", options=dates, key="f_s1_date",
                                format_func=lambda d: f"{d[8:]}.{d[5:7]} · {by_date[d]['orbit']}")
 with c2:
-    s1_base = st.selectbox("Basemap", list(M.BASEMAPS), index=0)
+    S.init("f_s1_basemap", list(M.BASEMAPS)[0], list(M.BASEMAPS))
+    s1_base = st.selectbox("Basemap", list(M.BASEMAPS), key="f_s1_basemap")
 with c3:
-    s1_unobs = st.toggle("Show not-observed area", value=True)
+    S.init("f_s1_unobserved", True)
+    s1_unobs = st.toggle("Show not-observed area", key="f_s1_unobserved")
 with c4:
-    s1_op = st.slider("Overlay opacity", 0.3, 1.0, 0.8, 0.05)
+    S.init("f_s1_opacity", 0.8)
+    s1_op = st.slider("Overlay opacity", 0.3, 1.0, step=0.05, key="f_s1_opacity")
 lay = by_date[s1_date]
 k1, k2, k3, k4 = st.columns(4)
 k1.metric("New dark water, Dnipro corridor", f"{lay['corridor_new_water_km2']:,.0f} km²",

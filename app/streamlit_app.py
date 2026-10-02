@@ -15,6 +15,7 @@ import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib import config as C  # noqa: E402
+from lib import state as S  # noqa: E402
 
 st.set_page_config(page_title="Kakhovka: pool to river", page_icon="🌊", layout="wide")
 
@@ -38,6 +39,7 @@ with st.sidebar:
                    C.gh(C.MANUSCRIPT_MD) + "#data-and-code-availability", width="stretch")
     st.link_button(f"Manuscript .docx ({C.RELEASE_TAG})", C.RELEASE_URL, width="stretch")
     st.caption(f"Links resolve on branch `{C.BRANCH}`.")
+    st.caption(f"Session `{S.session_id()}`: your filters are kept in this link and survive a reload.")
     from lib import data as D
     b = D.build_info()
     st.markdown("---")
@@ -49,4 +51,6 @@ with st.sidebar:
         f"**Validation pipeline** `{b.get('pipeline_sha256', '?')}` · audit **{b.get('audit', 'not run')}** "
         f"({b.get('audit_claims', '?')} claims)")
 
+S.restore()                     # filters back after a reload (?sid=… in the URL)
 st.navigation(pages).run()
+S.save()

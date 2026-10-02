@@ -58,3 +58,38 @@ def test_icesat2_pass_layer_matches_manifest():
     assert set(g[g["product"] == "ATL13"]["sample"]) == {"reservoir", "kherson", "estuary"}
     assert set(g.period) <= {"PRE_BREACH", "BREACH_DRAWDOWN", "POST_BREACH"}
     assert g.geometry.notna().all() and g.is_valid.all()
+
+
+def test_filters_survive_a_reload(tmp_path, monkeypatch):
+    """A reload is a new Streamlit session: the persisted filter must come back from the
+    store under the same ?sid=, and a fresh visitor must get a fresh sid and the default."""
+    monkeypatch.setenv("APP_STATE_DIR", str(tmp_path))
+
+    def page():
+        import sys
+        sys.path.insert(0, "app")
+        import importlib
+        import streamlit as st
+        from lib import state as S
+        importlib.reload(S)
+        S.restore()
+        S.init("f_s1_opacity", 0.8)
+        st.slider("Overlay opacity", 0.3, 1.0, step=0.05, key="f_s1_opacity")
+        S.save()
+
+    at = st_testing.AppTest.from_function(page, default_timeout=60)
+    at.query_params["sid"] = "0123456789ab"
+    at.run()
+    assert not at.exception
+    at.slider[0].set_value(0.45).run()
+    assert abs(at.slider[0].value - 0.45) < 1e-9
+
+    again = st_testing.AppTest.from_function(page, default_timeout=60)      # the reload
+    again.query_params["sid"] = "0123456789ab"
+    again.run()
+    assert abs(again.slider[0].value - 0.45) < 1e-9
+
+    fresh = st_testing.AppTest.from_function(page, default_timeout=60)      # another visitor
+    fresh.run()
+    assert abs(fresh.slider[0].value - 0.8) < 1e-9
+    assert fresh.query_params["sid"] != "0123456789ab"
