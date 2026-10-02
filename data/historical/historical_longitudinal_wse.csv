@@ -1,0 +1,136 @@
+location,order_from_dam,chainage_km,Q_m3_s,Q_label,H_dam_m,WSE_historical_m,curve_type,observed_or_calculated,source_table,source_figure,vertical_datum,transcription_confidence
+Kakhovka HPP,0,0.0,23800,Q0.1%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kakhovka HPP,0,0.0,19200,Q0.3%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kakhovka HPP,0,0.0,16200,Q1%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kakhovka HPP,0,0.0,14200,Q2%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kakhovka HPP,0,0.0,13100,Q3%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kakhovka HPP,0,0.0,11400,Q5%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kakhovka HPP,0,0.0,9400,Q10%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kakhovka HPP,0,0.0,7300,Q20%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kakhovka HPP,0,0.0,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Mykhailivka,1,,23800,Q0.1%,16.0,16.02,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Mykhailivka,1,,19200,Q0.3%,16.0,16.01,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Mykhailivka,1,,16200,Q1%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Mykhailivka,1,,14200,Q2%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Mykhailivka,1,,13100,Q3%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Mykhailivka,1,,11400,Q5%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Mykhailivka,1,,9400,Q10%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Mykhailivka,1,,7300,Q20%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Mykhailivka,1,,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Hornostaivka,2,,23800,Q0.1%,16.0,16.1,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Hornostaivka,2,,19200,Q0.3%,16.0,16.06,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Hornostaivka,2,,16200,Q1%,16.0,16.04,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Hornostaivka,2,,14200,Q2%,16.0,16.03,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Hornostaivka,2,,13100,Q3%,16.0,16.02,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Hornostaivka,2,,11400,Q5%,16.0,16.01,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Hornostaivka,2,,9400,Q10%,16.0,16.01,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Hornostaivka,2,,7300,Q20%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Hornostaivka,2,,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kachkarivka,3,,23800,Q0.1%,16.0,16.13,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kachkarivka,3,,19200,Q0.3%,16.0,16.09,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kachkarivka,3,,16200,Q1%,16.0,16.07,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kachkarivka,3,,14200,Q2%,16.0,16.05,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kachkarivka,3,,13100,Q3%,16.0,16.04,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kachkarivka,3,,11400,Q5%,16.0,16.02,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kachkarivka,3,,9400,Q10%,16.0,16.01,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kachkarivka,3,,7300,Q20%,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Kachkarivka,3,,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 79,4,79.0,23800,Q0.1%,16.0,16.23,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 79,4,79.0,19200,Q0.3%,16.0,16.15,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 79,4,79.0,16200,Q1%,16.0,16.11,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 79,4,79.0,14200,Q2%,16.0,16.09,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 79,4,79.0,13100,Q3%,16.0,16.08,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 79,4,79.0,11400,Q5%,16.0,16.05,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 79,4,79.0,9400,Q10%,16.0,16.03,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 79,4,79.0,7300,Q20%,16.0,16.01,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 79,4,79.0,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Otmet,5,,23800,Q0.1%,16.0,16.3,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Otmet,5,,19200,Q0.3%,16.0,16.2,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Otmet,5,,16200,Q1%,16.0,16.15,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Otmet,5,,14200,Q2%,16.0,16.12,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Otmet,5,,13100,Q3%,16.0,16.1,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Otmet,5,,11400,Q5%,16.0,16.07,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Otmet,5,,9400,Q10%,16.0,16.04,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Otmet,5,,7300,Q20%,16.0,16.02,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Otmet,5,,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 117,6,117.0,23800,Q0.1%,16.0,16.39,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 117,6,117.0,19200,Q0.3%,16.0,16.25,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 117,6,117.0,16200,Q1%,16.0,16.19,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 117,6,117.0,14200,Q2%,16.0,16.16,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 117,6,117.0,13100,Q3%,16.0,16.14,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 117,6,117.0,11400,Q5%,16.0,16.1,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 117,6,117.0,9400,Q10%,16.0,16.05,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 117,6,117.0,7300,Q20%,16.0,16.02,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+km 117,6,117.0,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Nikopol,7,,23800,Q0.1%,16.0,16.47,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Nikopol,7,,19200,Q0.3%,16.0,16.3,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Nikopol,7,,16200,Q1%,16.0,16.23,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Nikopol,7,,14200,Q2%,16.0,16.19,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Nikopol,7,,13100,Q3%,16.0,16.18,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Nikopol,7,,11400,Q5%,16.0,16.12,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Nikopol,7,,9400,Q10%,16.0,16.07,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Nikopol,7,,7300,Q20%,16.0,16.03,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Nikopol,7,,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Illinske,8,,23800,Q0.1%,16.0,16.67,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Illinske,8,,19200,Q0.3%,16.0,16.42,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Illinske,8,,16200,Q1%,16.0,16.3,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Illinske,8,,14200,Q2%,16.0,16.25,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Illinske,8,,13100,Q3%,16.0,16.23,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Illinske,8,,11400,Q5%,16.0,16.16,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Illinske,8,,9400,Q10%,16.0,16.09,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Illinske,8,,7300,Q20%,16.0,16.04,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Illinske,8,,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Verkhnia Tarasivka,9,,23800,Q0.1%,16.0,16.91,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Verkhnia Tarasivka,9,,19200,Q0.3%,16.0,16.61,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Verkhnia Tarasivka,9,,16200,Q1%,16.0,16.42,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Verkhnia Tarasivka,9,,14200,Q2%,16.0,16.32,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Verkhnia Tarasivka,9,,13100,Q3%,16.0,16.3,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Verkhnia Tarasivka,9,,11400,Q5%,16.0,16.22,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Verkhnia Tarasivka,9,,9400,Q10%,16.0,16.13,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Verkhnia Tarasivka,9,,7300,Q20%,16.0,16.06,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Verkhnia Tarasivka,9,,800,Qmin,16.0,16.0,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Bilenke,10,,23800,Q0.1%,16.0,17.28,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Bilenke,10,,19200,Q0.3%,16.0,16.89,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Bilenke,10,,16200,Q1%,16.0,16.67,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Bilenke,10,,14200,Q2%,16.0,16.48,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Bilenke,10,,13100,Q3%,16.0,16.42,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Bilenke,10,,11400,Q5%,16.0,16.33,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Bilenke,10,,9400,Q10%,16.0,16.21,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Bilenke,10,,7300,Q20%,16.0,16.09,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Bilenke,10,,800,Qmin,16.0,16.01,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Lysa Hora,11,,23800,Q0.1%,16.0,17.87,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Lysa Hora,11,,19200,Q0.3%,16.0,17.39,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Lysa Hora,11,,16200,Q1%,16.0,17.06,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Lysa Hora,11,,14200,Q2%,16.0,16.81,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Lysa Hora,11,,13100,Q3%,16.0,16.72,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Lysa Hora,11,,11400,Q5%,16.0,16.58,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Lysa Hora,11,,9400,Q10%,16.0,16.36,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Lysa Hora,11,,7300,Q20%,16.0,16.16,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Lysa Hora,11,,800,Qmin,16.0,16.01,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Rozumivka,12,,23800,Q0.1%,16.0,18.68,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Rozumivka,12,,19200,Q0.3%,16.0,18.32,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Rozumivka,12,,16200,Q1%,16.0,18.09,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Rozumivka,12,,14200,Q2%,16.0,17.94,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Rozumivka,12,,13100,Q3%,16.0,17.85,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Rozumivka,12,,11400,Q5%,16.0,17.7,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Rozumivka,12,,9400,Q10%,16.0,17.41,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Rozumivka,12,,7300,Q20%,16.0,16.87,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Rozumivka,12,,800,Qmin,16.0,16.02,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Zaporizhzhia,13,,23800,Q0.1%,16.0,19.66,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Zaporizhzhia,13,,19200,Q0.3%,16.0,19.25,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Zaporizhzhia,13,,16200,Q1%,16.0,18.94,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Zaporizhzhia,13,,14200,Q2%,16.0,18.73,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Zaporizhzhia,13,,13100,Q3%,16.0,18.6,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Zaporizhzhia,13,,11400,Q5%,16.0,18.38,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Zaporizhzhia,13,,9400,Q10%,16.0,18.04,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Zaporizhzhia,13,,7300,Q20%,16.0,17.55,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Zaporizhzhia,13,,800,Qmin,16.0,16.02,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Dnipro HPP,14,,23800,Q0.1%,16.0,22.23,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Dnipro HPP,14,,19200,Q0.3%,16.0,21.42,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Dnipro HPP,14,,16200,Q1%,16.0,20.8,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Dnipro HPP,14,,14200,Q2%,16.0,20.36,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Dnipro HPP,14,,13100,Q3%,16.0,20.12,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Dnipro HPP,14,,11400,Q5%,16.0,19.74,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Dnipro HPP,14,,9400,Q10%,16.0,19.24,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Dnipro HPP,14,,7300,Q20%,16.0,18.62,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available
+Dnipro HPP,14,,800,Qmin,16.0,16.04,design discharge profile,calculated,Table 20,,"HISTORICAL_BALTIC (BS-42/BS-77, not stated in source, NOT converted)",medium - no internal checksum available

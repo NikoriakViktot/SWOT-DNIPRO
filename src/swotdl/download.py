@@ -22,6 +22,10 @@ logger = logging.getLogger(__name__)
 # HTTP statuses that are transient and worth retrying
 _RETRYABLE = {429, 500, 502, 503, 504}
 
+#: Extensions that actually carry granule data. A resume check must look only
+#: at these — see _already_downloaded for what accepting anything else cost.
+_PRODUCT_SUFFIXES = {".nc", ".nc4", ".zip", ".shp", ".dbf", ".shx", ".prj"}
+
 
 @dataclass
 class DownloadResult:
@@ -64,6 +68,42 @@ def _out_path(cfg: AppConfig, product: str, entry: dict, url: str) -> Path:
     return dest_dir / _safe_filename(url)
 
 
+def _already_downloaded(out_path: Path) -> Optional[Path]:
+    """The granule's product already on disk, or None.
+
+    A .zip is deleted after extraction, so its own absence proves nothing: a
+    RiverSP granule that arrived as ``<stem>.zip`` now lives on disk as
+    ``<stem>.shp`` + sidecars, and a PIXC one as ``<stem>.nc``. Matching on the
+    stem is therefore what a re-run has to test, and without this every re-run
+    re-fetched the whole date range from scratch — 63 GB of RiverSP to top up
+    the last 15 months.
+
+    A zero-byte file or a leftover ``.part`` is NOT a hit: that is exactly the
+    interrupted download this is meant to resume.
+
+    Only files carrying real product data count. This is not pedantry: on a
+    WSL/Windows share every downloaded file acquires a 25-byte
+    ``<name>:Zone.Identifier`` companion, and ``glob(stem + ".*")`` matches
+    ``<stem>.shp:Zone.Identifier`` as readily as ``<stem>.shp``. The first
+    version of this guard accepted that 25-byte companion as proof the granule
+    was present, so 35 RiverSP granules whose own .shp/.dbf/.shx were all
+    0 bytes — casualties of an earlier interrupted run — were skipped by the
+    top-up instead of repaired, and surfaced only when the Ukraine clip could
+    not open them.
+    """
+    stem = out_path.name.split(".")[0]
+    if not stem:
+        return None
+    for p in out_path.parent.glob(f"{stem}.*"):
+        if not p.is_file() or ":" in p.name:      # Zone.Identifier and friends
+            continue
+        if p.suffix not in _PRODUCT_SUFFIXES:
+            continue
+        if p.stat().st_size > 0:
+            return p
+    return None
+
+
 def _get_token() -> Optional[str]:
     tok = os.environ.get("EARTHDATA_TOKEN")
     # Strip Windows \r\n or any whitespace from .env file
@@ -84,6 +124,15 @@ def _download_one(cfg: AppConfig, product: str, entry: dict) -> DownloadResult:
         )
 
     out_path = _out_path(cfg, product, entry, url)
+
+    cached = _already_downloaded(out_path)
+    if cached is not None:
+        logger.debug("SKIP %s (already on disk)", cached.name)
+        return DownloadResult(
+            title=title, url=url, local_path=str(cached), ok=True,
+            bytes_written=cached.stat().st_size,
+        )
+
     headers = {"Authorization": f"Bearer {token}"}
     timeout = (cfg.download.connect_timeout_sec, cfg.download.timeout_sec)
 

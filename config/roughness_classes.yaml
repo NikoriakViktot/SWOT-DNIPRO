@@ -1,0 +1,55 @@
+# Roughness classes -> Manning's n priors (plan 15 WP3; audit 20260918T175108Z roughness_class_table.csv).
+# n is NEVER computed from an index value: a cell gets a CLASS from project data (S2 classes, hydroperiod,
+# Dynamic World / WorldCover, ATL08 canopy, legacy flags) and the class carries n_low / n_base / n_high.
+# Sources (audit literature_sources.csv): SRC-01 HEC-RAS 6.4 dam-break page; SRC-02 HEC-RAS 2D NLCD table;
+# SRC-03 Chow 1959 via HEC-RAS Table 3-1; SRC-04 USGS WSP 2339 (Arcement & Schneider 1989) Tables 1/3;
+# SRC-07 Nepf 2012; SRC-14 willow patches (JHE 2023); SRC-16 Didukh et al. 2024 (local willow heights).
+# MODEL_COMPARISON_ONLY (never a source of n, 2026-09-19): SRC-27 Kadam et al. 2024 HEC-RAS 1D+2D of this breach with ONE static
+#   cover: bare 0.025, trees 0.08, water 0.04, crops 0.05, built 0.03, wet 0.05; SRC-28 Agerbeek et al. 2024 Tygron, n from ESRI 10 m LC;
+#   SRC-29 Shumilova et al. 2025 (Science) Flow-3D, uniform n = 0.035. Our contribution is n as a TIME SERIES of states (BREACH_2023 ->
+#   CURRENT_2026), not the class table itself.
+# calibration_status: LITERATURE_PRIOR_ONLY | LOCALLY_SUPPORTED_CLASS -- nothing is hydraulically calibrated.
+version: 2026-09-18
+codes:
+  0:  unknown
+  1:  open_water
+  2:  intermittent_water
+  3:  wet_sediment
+  4:  bare_sand_silt
+  5:  sparse_herbaceous
+  6:  dense_herbaceous
+  7:  reed_tall_herb
+  8:  young_woody_sparse
+  9:  young_woody_dense
+  10: mature_woody_legacy
+  11: built
+  12: cropland
+  13: channel_sand          # BREACH_2023_bed: never exposed in 2023 (active channel)
+  14: wet_silt_depression   # BREACH_2023_bed: slow recession (exposed after mid-August 2023)
+  15: sand_silt_flat        # BREACH_2023_bed: fast/mid recession (exposed by early August 2023)
+classes:
+  open_water:          {n_low: 0.025, n_base: 0.030, n_high: 0.035, sources: [SRC-03, SRC-02, SRC-01], status: LOCALLY_SUPPORTED_CLASS, regime: channel}
+  intermittent_water:  {n_low: 0.030, n_base: 0.040, n_high: 0.060, sources: [SRC-03],                 status: LITERATURE_PRIOR_ONLY,   regime: shallow ponds}
+  wet_sediment:        {n_low: 0.020, n_base: 0.025, n_high: 0.032, sources: [SRC-04, SRC-03],         status: LOCALLY_SUPPORTED_CLASS, regime: sheet flow}
+  bare_sand_silt:      {n_low: 0.022, n_base: 0.028, n_high: 0.035, sources: [SRC-04, SRC-03],         status: LOCALLY_SUPPORTED_CLASS, regime: sheet flow}
+  sparse_herbaceous:   {n_low: 0.025, n_base: 0.032, n_high: 0.045, sources: [SRC-03, SRC-02, SRC-04], status: LOCALLY_SUPPORTED_CLASS, regime: overbank}
+  dense_herbaceous:    {n_low: 0.030, n_base: 0.040, n_high: 0.060, sources: [SRC-03, SRC-04],         status: LOCALLY_SUPPORTED_CLASS, regime: overbank}
+  reed_tall_herb:      {n_low: 0.045, n_base: 0.065, n_high: 0.090, sources: [SRC-02, SRC-03, SRC-04, SRC-07], status: LOCALLY_SUPPORTED_CLASS, regime: emergent,
+                        field_support: "GEDI L2A (p62, leaf-on): rh98 p50 3.21 m (2024) / 2.98 (2025), p90 4.29 / 4.97; share rh98 >= 4 m 0.15 / 0.24. The class sits between the 2.7 m instrument floor and the 4 m woody threshold, i.e. GEDI confirms tall herbaceous cover but cannot resolve its true height; no n change."}
+  young_woody_sparse:  {n_low: 0.040, n_base: 0.060, n_high: 0.090, sources: [SRC-03, SRC-04, SRC-14, SRC-16], status: LOCALLY_SUPPORTED_CLASS, regime: emergent to just-submerged,
+                        field_support: "GEDI L2A (p62, power beams, leaf-on): rh98 p50 3.35 m (2024) -> 3.72 m (2025), p90 4.73 -> 5.63; share rh98 >= 4 m 0.22 -> 0.42. Matched acquisition window 01.06-09.07 both years: 3.21 -> 3.72 m, share 0.09 -> 0.42, while the bare/water control classes stay at the 2.7 m instrument floor. Height only; n is NOT calibrated from it."}
+  young_woody_dense:   {n_low: 0.070, n_base: 0.100, n_high: 0.160, sources: [SRC-03, SRC-04, SRC-16, SRC-14], status: LOCALLY_SUPPORTED_CLASS, regime: flow through canopy,
+                        field_support: "SRC-16 Didukh et al. 2024 (Chornomorski Bot. J. 20(3), field plots 100 m2): Salix x rubens seedlings up to 90 ind/m2; summer-2023 thicket mean height ~1.9 m, max 4.7 m; ~3.5 m mean only on wet rich sites (virginal stage). ICESat-2 leaf-on h_canopy p50 of canopy segments 4.3 (2024) / 4.7 (2025) / 5.6 m (2026) -- consistent with ~1 m/yr from that base (p47). GEDI L2A adds an orthogonal sensor (p62, power beams, leaf-on): rh98 p50 3.32 m (2024) -> 4.21 m (2025), p90 4.48 -> 6.01, share rh98 >= 4 m 0.19 -> 0.55; on the matched window 01.06-09.07 3.17 -> 4.21 m (+1.04 m in one year) against a flat bare-ground control (2.76 -> 2.72 m). The two lidars agree on the trend but NOT on the level: per 250 m cell GEDI calls 31 % (2024) / 76 % (2025) of cells woody against ICESat-2's 7 % / 25 % (Spearman of the shares only 0.19 / 0.26), because a 25 m GEDI footprint is flagged by a single tall shrub. Height/density support the class, NOT a calibration of n."}
+  mature_woody_legacy: {n_low: 0.100, n_base: 0.150, n_high: 0.200, sources: [SRC-03, SRC-02],         status: LOCALLY_SUPPORTED_CLASS, regime: flow into branches}
+  built:               {n_low: 0.030, n_base: 0.080, n_high: 0.150, sources: [SRC-02],                 status: LITERATURE_PRIOR_ONLY,   regime: urban, note: "developed-class values assumed; obstructions preferred in 2D"}
+  cropland:            {n_low: 0.020, n_base: 0.035, n_high: 0.050, sources: [SRC-03, SRC-02],         status: LITERATURE_PRIOR_ONLY,   regime: overbank, note: "Chow cultivated no crop 0.020-0.040 .. mature field crops 0.030-0.050; HEC NLCD 82 0.020-0.05"}
+  channel_sand:        {n_low: 0.025, n_base: 0.030, n_high: 0.040, sources: [SRC-04, SRC-01],         status: LOCALLY_SUPPORTED_CLASS, regime: "reservoir bed under the wave / emptying: sand channel, upper regime", note: "WSP 2339 Table 1 sand/coarse sand 0.012-0.035; dam-break floor 0.025"}
+  wet_silt_depression: {n_low: 0.020, n_base: 0.028, n_high: 0.045, sources: [SRC-04],                 status: LOCALLY_SUPPORTED_CLASS, regime: "bed: depressions that drained last", note: "firm soil 0.020-0.032 + n1 irregularity 0.001-0.020"}
+  sand_silt_flat:      {n_low: 0.022, n_base: 0.030, n_high: 0.040, sources: [SRC-04],                 status: LOCALLY_SUPPORTED_CLASS, regime: "bed: flats that drained first", note: "coarse sand 0.026-0.035 / firm soil; n1 minor"}
+dam_break:
+  channel_bounds:  [0.025, 0.075]    # SRC-01 risk-assessment ranges, BREACH_2023 only
+  overbank_bounds: [0.05, 0.15]
+  bounding_runs:   [0.8, 1.2]        # x n on the whole field
+  near_dam_factor: {factor: 2.0, distance_m: 5000}
+season:
+  leaf_off_factor_woody: 0.7          # Chow: medium-to-dense brush winter 0.045-0.110 vs summer 0.070-0.160 (~0.7)

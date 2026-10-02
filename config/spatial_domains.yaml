@@ -1,0 +1,306 @@
+# Authoritative spatial domain registry (P0, implemented 2026-09-11).
+#
+# Replaces RES_BBOX_4326 (phase20_water_objects.py), RESERVOIR_WKT
+# (phase19_discover_targeted.py), and the box() literal in discover_swot.py.
+# See outputs/planning/00_REBUILD_EXECUTIVE_PLAN.md and
+# outputs/planning/01_domain_and_mask_redesign.md for the full rationale.
+#
+# Loaded exclusively through src/swot_dnipro/spatial_domains.py -- no script
+# should read this file directly.
+
+crs: EPSG:4326
+
+reservoir_full_pool_prebreach:
+  source: data/Kakhovka_SA_2.geojson   # resolved via CFG.RESERVOIR_GEOJSON (ICESAT_ROOT)
+  provenance: >
+    Verified 2026-09 (part10_maps.py fig. M3): IoU vs. independent
+    data-driven footprint high; attribute VolumeCorr=17455 (~17.5 km3,
+    matches reservoir full volume). PRE-BREACH FULL-POOL. Status as of
+    2026-09-11 P1C: validated against ONE date (2023-06-05) plus a
+    multi-date consensus check this session -- see
+    outputs/tables/sa2_multidate_consensus.csv for the current n and
+    verdict. Promoted to authoritative; not yet hand-edited.
+  crs_native: EPSG:4326
+
+study_domain_full:
+  buffer_km: 15
+  note: >
+    Discovery/download AOI only -- derived from reservoir_full_pool_prebreach
+    + this buffer, NEVER used to clip a scientific product. Recompute via
+    spatial_domains.as_bbox("study_domain_full"); do not hand-edit
+    coordinates anywhere downstream.
+
+reservoir_npu_domain:
+  source: UNRESOLVED
+  status: >
+    No independent NPU (normal pool level) polygon has been identified in
+    either repository as of 2026-09-11. data/historical/historical_longitudinal_wse.csv
+    digitises a level-area CURVE, not a polygon. config/aoi/*.geojson in this
+    repo are unrelated working AOIs (dniprovske/kakhovka_reservoir/lower_dnipro),
+    not a verified NPU boundary. ACTION: confirm with domain owner before P5;
+    calling spatial_domains.load("reservoir_npu_domain") raises
+    UnresolvedDomainError by design until then.
+
+below_dam_floodplain:
+  source: data/processed/domains/below_dam_floodplain_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/p42_below_dam_floodplain.py
+  derived_from: >
+    (a) observed June-2023 flood, cleaned: Sentinel-1 water (p0v/p0w M3 per-scene masks) in >= 2 of
+    the 11 events 2023-06-01..06-30 after the terrain veto below, minus pre-breach water and the
+    Inhulets subzone; UNION Sentinel-2 water on 2023-06-08/06-20/06-30 outside pre-breach water,
+    same terrain veto; UNION (b) the terrain-eligible floodplain: HAND < h0(x) AND FABDEM < h0(x) + 1 m,
+    within 10 km of the pre-breach Dnipro network. HAND from FABDEM floored at the 1 m river level
+    (WhiteboxTools 2.4.0, breach_depressions + D8); streams = pre-breach water components whose median
+    FABDEM < 3.5 m (terrace canals/ponds and M3 false water on the sands excluded) plus the main network.
+    the flood ceiling is the OBSERVED peak water surface (v20, p59): SWOT KaRIn RiverSP nodes of the Dnipro
+    main stem, daily 2023-06-01..06-29 (1-day cal/val orbit, pass 001), event maximum per node smoothed over
+    7 nodes, + 0.5 m margin (SWOT under-reads the Kherson gauge peak 4.98 vs 5.78 m); every cell takes its
+    nearest node; cells > 15 km from a node are capped at the Kherson peak. HAND limit = that WSE - 1 m river
+    floor; FABDEM must also lie below it. Peak WSE 8.0 m at the dam, 10.2 m at 15-20 km, 5.7 m at 60 km,
+    2.4 m at 80 km (EVRF2019). The two-sensor h0 profile of v19 is kept only as a diagnostic.
+    Restricted to ZONE_4 U ZONE_2, minus the reservoir pool (buffer 200 m), east of the dam + 1 km, and
+    three axis-aligned rectangles over the Inhulets valley / isolated terrace fragments (p42 CUT_RECTS).
+  area_km2: 473.9
+  provenance: >
+    RESOLVED 2026-09-18 (plan 15 WP2); REVISED 2026-09-19 through v19 after the user's map reviews and
+    the DEM check (fig08): v1-v6 fixed h0 = 5 m; v7-v8 a wrong 'chronic radar-dark' veto (removed the
+    real flood, off since v9); v9 pre-breach water excluded from events; v10-v14 rectangle cuts; v15
+    optical water under the terrain veto; v16 terrace-level pre-breach water removed from the HAND seeds
+    (438 km2 in ZONE_4 were M3 false water on the sands / canals); v17 elevation ceiling; v18 DEM floored
+    at 1 m (FABDEM water cells at -2..-5 m had inflated HAND by ~5 m); v19 two-sensor calibration and the
+    gauge cap for the delta; v20 SWOT-observed peak WSE as the ceiling (the v19 h0 of 3.5 m near the dam was
+    half the observed 9-10 m rise). FABDEM inside the domain: p50 1.0 m, p90 3.3 m, p99 6.2 m, nothing above
+    8 m (before v16: p50 8 m, p99 45 m). Resolved by SWOT (p59): the near-dam rise was +9-10 m, the v19 estimate was wrong. The canonical S1 envelopes (1348 / 803 km2) are
+    NOT the domain. The DniproHES axis file (damb_DniproGES) is the UPSTREAM end and was not used.
+  status: RESOLVED
+
+dnipro_water_domain:
+  source: data/processed/domains/dnipro_water_domain_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/p0b_build_dnipro_water_domain.py
+  derived_from: ESA WorldCover v200 (2021, 10 m), class 80 + adjacent class 90
+  margin_m: 200
+  provenance: >
+    Connected Dnipro water system from the reservoir head at Khortytsia to the
+    Dnipro-Bug liman, derived from data rather than hand-drawn, with islands
+    retained as interior rings (148 rings; 47 islands above 0.05 km2).
+    Replaces the two geometries previously used for reservoir work, both of
+    which are wrong in ways a total-area check cannot detect.
+    P20_reservoir_footprint.geojson truncates 87.4 km2 of real water at the
+    eastern end -- Sentinel-1 there gives VV median -21.6 dB with 99.0% of
+    cells below -15 dB -- while adding ~123 km2 of land (VV median -11.5 dB,
+    15.8% water-like), so its total nearly matches despite the wrong shape.
+    reservoir_full_pool_prebreach extends further east but draws one solid
+    blob across Khortytsia island, which splits the Dnipro into two arms:
+    over the northern lobe it claims 44.9 km2 of water where Sentinel-1
+    measures 24.5 km2, and the 25.8 km2 excess is the island itself,
+    independently confirmed at 24.1 km2 by ESA WorldCover. Its own record
+    already said "not yet hand-edited"; it was validated by IoU and by volume
+    (VolumeCorr 17.5 km3), and neither integral metric can see an island
+    swallowed inside a polygon.
+    Reservoir part 2146 km2, lower Dnipro + liman part 2346 km2, 5065 km2
+    with the 200 m shoreline margin. In WorldCover 2021 the dam is intact, so
+    the two parts are selected explicitly rather than bridged.
+
+# --- analysis zones (DOWNLOAD/ANALYSIS AOIs, never water masks) -------------
+# Built by scripts/p0c_build_analysis_zones.py from dnipro_water_domain:
+# the water corridor buffered 10 km, cut at named landmarks with a 10 km
+# overlap at each seam so no Sentinel-1 coverage is lost at an artificial
+# boundary and the exact scientific limit can be set later without
+# re-downloading. Every derived raster/event/table must carry analysis_zone.
+#
+# The three zones are separated because they are different hydraulic systems
+# and a SAR classifier does not transfer between them: calm impounded water
+# in ZONE_1; reed beds, islands and sub-resolution channels in ZONE_2 where
+# dark-SAR=water degrades; wind waves, setup and coastal forcing in ZONE_3
+# where open water is often not dark at all.
+
+ZONE_1_KAKHOVKA_LOWER_DNIPRO:
+  source: data/processed/domains/analysis_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/p0c_build_analysis_zones.py
+  is_water_mask: false
+  subzones: [KAKHOVKA_RESERVOIR_CORE, FORMER_RESERVOIR_TRANSITION,
+             KAKHOVKA_DAM_TO_KHERSON, INHULETS_TRIBUTARY]
+  provenance: >
+    Kakhovka reservoir / former reservoir up to DniproHES at Zaporizhzhia,
+    plus the Dnipro below the former dam and the river corridor to Kherson.
+    11,412 km2. Reservoir -> drawdown -> river. H1/H2/H3 reservoir-stage
+    products apply to the KAKHOVKA_RESERVOIR_CORE subzone ONLY (2,144 km2),
+    not to the whole zone. FORMER_RESERVOIR_TRANSITION is 196 km2.
+    The reach below the dam is split rather than lumped:
+    KAKHOVKA_DAM_TO_KHERSON (170 km2) is the main channel that carried the
+    breach flood wave, separated along the dam->Kherson axis from
+    INHULETS_TRIBUTARY (78 km2), which joins from the north with its own
+    regime and must not be averaged into the main-channel reach.
+
+ZONE_2_KHERSON_DELTA:
+  source: data/processed/domains/analysis_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/p0c_build_analysis_zones.py
+  is_water_mask: false
+  provenance: >
+    Kherson, the downstream distributaries, islands, floodplain and reed
+    wetlands, and the transition into the upper Dnipro-Bug liman. 1,677 km2.
+    Multi-branch river: flooded vegetation double-bounces bright and many
+    channels fall below the resolution cell, so a dark-SAR water rule
+    calibrated in ZONE_1 is not valid here.
+
+ZONE_3_DNIPRO_BUG_ESTUARY:
+  source: data/processed/domains/analysis_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/p0c_build_analysis_zones.py
+  is_water_mask: false
+  provenance: >
+    Dnipro-Bug estuary, Mykolaiv, the lower Southern Bug and the Inhul mouth,
+    with the outlet toward the Black Sea. 7,621 km2. Wind waves, wind setup,
+    seiche, salinity and coastal forcing roughen the surface, so open water is
+    frequently NOT dark; treat as a separate calibration problem.
+
+DNIPRO_SYSTEM_MASTER:
+  source: union of the three analysis zones
+  crs_native: EPSG:32636
+  is_water_mask: false
+  provenance: >
+    Catalogue and visualisation container only (19,682 km2), for a single map
+    from Zaporizhzhia to Mykolaiv and a shared data catalogue. NOT a physical
+    model: it spans three different hydraulic systems, so nothing may be
+    calibrated or validated against it.
+
+ZONE_4_DAM_TO_KHERSON_FLOODWAY:
+  source: data/processed/domains/analysis_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/p0s_promote_dam_kherson_zone.py
+  is_water_mask: false
+  provenance: >
+    The Dnipro floodway from the Kakhovka dam to Kherson, as the June 2023
+    breach wave actually occupied it: the observed Sentinel-1 flood envelope
+    over 9 post-breach acquisitions, buffered by 1 km. Promoted out of ZONE_1,
+    where it had been the subzone KAKHOVKA_DAM_TO_KHERSON, once the envelope
+    was measured at 695 km2 against that subzone's 170 km2 of channel and the
+    registry water domain's 234 km2 -- the flood left the channel by
+    kilometres, so a channel polygon could not scope it.
+    KAKHOVKA_DAM_TO_KHERSON REMAINS a subzone and still means the CHANNEL;
+    products about pre-breach river geometry and chainage continue to use it.
+    This zone means the FLOODWAY. They are different objects.
+    Stratify by time since breach and relative orbit, never by reservoir
+    stage: there is no pool here, and inheriting ZONE_1's stage x regime x
+    orbit design would mis-stratify every event.
+    Overlaps ZONE_1 fully and ZONE_2 by 15.2% by design; the shared margin is
+    what makes per-event mask disagreement available as an independent check.
+  correction_2026_09_29: >
+    The text above describes the FIRST build (2026-09-14: envelope 695 km2,
+    +1 km). The registered geometry was later rebuilt by p0v from the
+    canonical composite envelope (1,333.6 km2) + 10 km = 6,919.5 km2, and it
+    does NOT lie inside ZONE_1: 2,752.7 km2 (39.8 %) is outside it. Measured
+    by scripts/ms5_paper1_zones.py, see outputs/paper/zones/
+    paper1_zones_manifest.json. This zone is an S1 download/processing
+    container; paper 1 uses F_LOWER_DNIPRO_FLOODWAY instead.
+
+ukraine_swot_clip_domain:
+  source: data/processed/domains/ukraine_swot_clip_domain.geojson
+  crs_native: EPSG:4326
+  built_by: scripts/p22_build_ukraine_clip_domain.py
+  derived_from: >
+    union of the 16 official Ukrainian river basin districts
+    (ukraine_basins.geojson, companion repo) and all four registered analysis
+    zones, buffered 20 km in EPSG:32636
+  margin_m: 20000
+  note: >
+    ARCHIVE-RETENTION CONTAINER ONLY, like study_domain_full. Never clip a
+    scientific product to it: a national extent has no hydraulic meaning. Its
+    only purpose is to discard the parts of the continent-wide SWOT RiverSP /
+    LakeSP granules that lie outside Ukraine.
+  provenance: >
+    Natural Earth 10m admin-0 was tried first and rejected on two independently
+    verified grounds. (1) It is a LAND polygon: contains() is False for Kherson
+    (32.61, 46.63) and for Ochakiv on the liman (31.55, 46.61) because both sit
+    on water, so clipping water-surface products to it would delete the river,
+    the liman and the reservoir. (2) It assigns Crimea to ADMIN='Russia', which
+    would silently drop Crimean and Azov observations on a political rather
+    than hydrological basis. The basin districts alone were also insufficient:
+    they cover only 71.09% of ZONE_3_DNIPRO_BUG_ESTUARY because they stop at
+    the coastline while ZONE_3 extends into the liman. The registered zones are
+    unioned in to repair exactly that. The builder asserts 100% coverage of
+    every registered zone and seven named control points, and refuses to write
+    the file otherwise, so a future edit that shrinks the domain fails at build
+    time rather than during a deletion.
+
+# --- paper 1 analysis zones R / F / D / E -----------------------------------
+# Four hydro-geomorphically distinct systems in flow order, PAIRWISE DISJOINT
+# (asserted < 0.001 km2), so their areas are additive. Built from registered
+# geometry only by scripts/ms5_paper1_zones.py and frozen in a TRACKED file
+# (data/ is git-ignored) with areas and hashes in paper1_zones_manifest.json.
+# Unlike ZONE_1..4 (download containers with 10 km seam overlaps), these
+# describe the system. None of them is defined by the 2023 event: the June 2023
+# Sentinel-1 flood envelope is carried separately as an event layer.
+# Seams: R|F Kakhovka dam axis (-500 m), F|D Kherson, D|E p0c CUT_2_3_EASTING.
+
+R_FORMER_KAKHOVKA_RESERVOIR:
+  source: outputs/paper/zones/paper1_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/ms5_paper1_zones.py
+  is_water_mask: false
+  paper_label: R
+  provenance: >
+    The former reservoir footprint, DniproHES to the dam = ZONE_1 subzone
+    KAKHOVKA_RESERVOIR_CORE (dnipro_water_domain inside SA_2, Khortytsia kept
+    as an island). 2,144 km2. The reservoir is the unit, so R is its
+    footprint, not a 10 km corridor around it (ZONE_1 was 11,412 km2).
+
+F_LOWER_DNIPRO_FLOODWAY:
+  source: outputs/paper/zones/paper1_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/ms5_paper1_zones.py
+  is_water_mask: false
+  paper_label: F
+  provenance: >
+    The lower Dnipro from the Kakhovka dam to the head of the Kherson delta,
+    including the Inhulets confluence: below-dam water of dnipro_water_domain
+    buffered 10 km, between the dam and Kherson cuts, minus R. Defined by the
+    hydrography, NOT by the 2023 flood; the flood envelope is the event layer
+    event_flood_2023_s1_envelope inside it. Replaces ZONE_4 as the paper's F.
+
+D_KHERSON_DELTA:
+  source: outputs/paper/zones/paper1_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/ms5_paper1_zones.py
+  is_water_mask: false
+  paper_label: D
+  provenance: >
+    Kherson delta between the Kherson and delta/liman cuts, 10 km corridor of
+    below-dam water, one corridor (components reaching the Kherson cut, the
+    p0x rule). ZONE_2 without its 5 km seam overlaps.
+
+E_DNIPRO_BUG_ESTUARY:
+  source: outputs/paper/zones/paper1_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/ms5_paper1_zones.py
+  is_water_mask: false
+  paper_label: E
+  provenance: >
+    Dnipro-Buh estuary west of the delta/liman cut, the lower Southern Bug and
+    the Inhul mouth, plus the Southern Bug fragment the delta band slices.
+    ZONE_3 without its 5 km seam overlap.
+
+event_flood_2023_s1_envelope:
+  source: outputs/paper/zones/paper1_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/ms5_paper1_zones.py
+  is_water_mask: false
+  kind: event_layer
+  provenance: >
+    EVENT OBSERVATION, NOT A ZONE. The canonical June 2023 Sentinel-1 flood
+    envelope (p0v, ZONE4_FLOOD_ENVELOPE_CANONICAL, 1,333.6 km2), frozen.
+    It also covers the lower reservoir near the dam; its split across R/F/D/E
+    is in paper1_zones_manifest.json (event_split_km2).
+
+event_flood_2023_s1_envelope_1km:
+  source: outputs/paper/zones/paper1_zones_utm.geojson
+  crs_native: EPSG:32636
+  built_by: scripts/ms5_paper1_zones.py
+  is_water_mask: false
+  kind: event_layer
+  provenance: >
+    EVENT OBSERVATION, NOT A ZONE. event_flood_2023_s1_envelope + 1 km.

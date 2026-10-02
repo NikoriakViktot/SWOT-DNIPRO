@@ -1,0 +1,11 @@
+block,statistic,value,n_pre,n_post,note,ci_lo,ci_hi,n_clusters,n_resamples,rgt,positive,pre_median,post_median
+headline,difference_of_medians_cm_km,3.2231914912165878,14,14,"per-overpass Theil-Sen, span >= 20 km",,,,,,,,
+rgt_cluster_bootstrap,difference_of_medians_cm_km,3.2349156708547744,14,14,"RGTs resampled with replacement, 10000 draws, seed 0; pre RGTs [np.int64(45), np.int64(165), np.int64(205), np.int64(609), np.int64(645), np.int64(989), np.int64(1209)], post RGTs [np.int64(205), np.int64(265), np.int64(609), np.int64(645), np.int64(769), np.int64(989), np.int64(1209)]",2.1711512047510184,5.172036018449474,9.0,10000.0,,,,
+paired_common_rgt,post_minus_pre_median_cm_km,2.576915233418232,4,1,,,,,,205.0,,,
+paired_common_rgt,post_minus_pre_median_cm_km,3.700213063434595,3,2,,,,,,609.0,,,
+paired_common_rgt,post_minus_pre_median_cm_km,5.128172076999743,1,1,,,,,,645.0,,,
+paired_common_rgt,post_minus_pre_median_cm_km,2.9471241549789573,2,3,,,,,,989.0,,,
+paired_common_rgt,post_minus_pre_median_cm_km,5.584299461858312,1,1,,,,,,1209.0,,,
+paired_common_rgt,median_of_paired_differences_cm_km,3.700213063434595,11,8,"common RGTs [205, 609, 645, 989, 1209]",,,5.0,,,5/5,,
+season,difference_of_medians_cm_km_Apr-Oct,4.010211188289739,8,10,"pre months [4, 7, 7, 7, 7, 8, 8, 10], post months [4, 5, 7, 7, 7, 8, 8, 9, 10, 10]",,,,,,10/10,0.10616306121327984,4.1163742495030196
+season,difference_of_medians_cm_km_Nov-Mar,2.3089537696159215,6,4,"pre months [1, 2, 2, 3, 11, 12], post months [1, 2, 11, 11]",,,,,,4/4,0.0904778007807273,2.399431570396649

@@ -1,0 +1,98 @@
+"""Paths and links for the companion app — the only place either is spelled out.
+
+Every path is relative to the repository root, so the app runs from a plain
+clone and on Streamlit Community Cloud. Links point at GitHub; set the three
+PRODUCTION values below after the app is deployed and the branch is merged.
+"""
+from __future__ import annotations
+
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+
+# --- PRODUCTION: replace after deployment -------------------------------------
+REPO_URL = "https://github.com/NikoriakViktot/SWOT-DNIPRO"
+BRANCH = "paper1-v6.2-rc5"           # links resolve on the release tag (immutable)
+APP_URL = "https://swot-dnipro.streamlit.app"   # Streamlit Community Cloud, branch paper1-release
+RELEASE_TAG = "paper1-v6.2-rc5"
+RELEASE_URL = f"{REPO_URL}/releases/tag/{RELEASE_TAG}"   # v6.docx is a release asset, not in git
+# ------------------------------------------------------------------------------
+
+PAPER = ROOT / "outputs/paper"
+MANUSCRIPT_MD = PAPER / "paper1_manuscript_en-v6.md"
+MANUSCRIPT_DOCX = PAPER / "paper1_manuscript_en-v6.docx"
+FIGURES = PAPER / "figures"
+VALIDATION = PAPER / "validation"
+ZONES = PAPER / "zones"
+APP_DATA = PAPER / "app_data"
+NOTEBOOKS = ROOT / "notebooks"
+
+SUMMARY = VALIDATION / "ms7_summary.csv"
+EVIDENCE = VALIDATION / "ms7_evidence.csv"
+INVENTORY = VALIDATION / "ms7_station_inventory.csv"
+SLOPE_SAMPLING = VALIDATION / "ms7b_slope_geoid_sampling_summary.csv"
+SLOPE_FRAMES = VALIDATION / "ms7b_slope_frames_summary.csv"
+BUILD_INFO = VALIDATION / "build_info.json"
+ZONE_MANIFEST = ZONES / "paper1_zones_manifest.json"
+S1_DIR = APP_DATA / "s1"                      # per-date Sentinel-1 flood layer (app/prepare_app_s1_layers.py)
+S1_MANIFEST = S1_DIR / "manifest.json"
+S1_DYNAMICS = APP_DATA / "s1_flood_dynamics.csv"
+
+# the scripts that make every number and figure of the paper's validation
+PIPELINE = [
+    ("scripts/ms5_paper1_zones.py", "Analysis zones R/F/D/E, frozen with hashes"),
+    ("scripts/ms6_paper1_figures.py", "Figure 1 (study area) and Figure S1 (crossing map)"),
+    ("scripts/ms6b_swot_icesat_crossings.py", "SWOT–ICESat-2 crossings from the primary products"),
+    ("scripts/ms6c_crossing_provenance.py", "Why the v5 crossing numbers cannot be reproduced"),
+    ("scripts/ms7_validation_paths.py", "Validation paths V1–V6: evidence and summary tables"),
+    ("scripts/ms7b_slope_geoid_sampling.py", "Headline slope vs EGG2015 sampling (nearest / bilinear)"),
+    ("scripts/ms7c_validation_figures.py", "Figures 5, S2, S3, S5, S6 from the ms7 tables"),
+    ("scripts/ms7d_manuscript_audit.py", "Manuscript ↔ tables ↔ figures consistency audit"),
+    ("scripts/ms8_wind_setup_20230405.py", "ERA5 wind over the liman at the 5 April 2023 Kherson anomaly (p0e table)"),
+    ("scripts/ms9_slope_sensitivity.py", "Slope contrast: cluster bootstrap by ground track, paired tracks, season strata"),
+    ("scripts/ms10_s2_fragmentation_sensitivity.py", "Sentinel-2 fragmentation: thresholds, minimum mapping unit, morphology"),
+    ("scripts/ms11_build_manuscript_docx.py", "The manuscript .docx from the audited Markdown (pandoc)"),
+    ("scripts/ms12_heterogeneity.py", "Within-date water-surface heterogeneity, raw and detrended; Figure 4"),
+    ("scripts/ms13_drawdown_wave.py", "Outlet drawdown and flood wave from SWOT in the paper's vertical tie; Figure 2"),
+    ("scripts/ms14_slope_figure.py", "Per-overpass slope with intervals and the two distributions; Figure 3"),
+    ("app/prepare_app_data.py", "The light data layer this app reads"),
+    ("app/prepare_app_s1_layers.py", "The per-date Sentinel-1 flood layer, copied from floodstate-eo (p94/p98)"),
+    ("app/prepare_app_icesat2_passes.py", "ICESat-2 passes as ground tracks: ATL13 (three samples) and ATL08 (k10 terrain)"),
+]
+
+# figure status: how each figure of the manuscript was produced
+FIGURE_STATUS = {
+    "F00_study_area.png": ("recomputed", "scripts/ms6_paper1_figures.py"),
+    "F18_swot_icesat_whole_zone_map.png": ("recomputed", "scripts/ms6_paper1_figures.py"),
+    "FS_V4_swot_icesat_agreement.png": ("recomputed", "scripts/ms7_validation_paths.py"),
+    "F04_heterogeneity.png": ("recomputed", "scripts/ms12_heterogeneity.py"),
+    "F15_swot_drawdown_and_wave.png": ("recomputed", "scripts/ms13_drawdown_wave.py"),
+    "F02_slope_per_overpass.png": ("recomputed", "scripts/ms14_slope_figure.py"),
+    **{f: ("recomputed", "scripts/ms7c_validation_figures.py") for f in (
+        "F16_closure_offsets.png", "F17_reference_surfaces.png", "F19_swot_icesat_egg2015_along_system.png",
+        "F20_vertical_chains.png", "F21_covariability_scatter.png", "F22_gauge_network_correlation.png",
+        "F23_slope_frame_invariance.png", "F24_station_panels.png", "F25_breach_fortnight_posts.png",
+        "F26_downstream_posts_2023.png", "F27_covariability_main.png", "F28_water_levels_main.png")},
+    # slope / heterogeneity / drawdown figures: checked against the tables, unchanged
+
+}
+DEFAULT_STATUS = ("carried from v5 — pending final rebuild", None)
+
+CLAIMS = {
+    "V1_ATL13_GAUGE_CLOSURE": "V1 — Gauge ↔ ATL13 closure",
+    "V2_ATL13_GAUGE_COVARIABILITY": "V2 — Gauge ↔ ATL13 co-variability",
+    "V3_ROZUMIVKA_TRANSFER": "V3 — Rozumivka cross-epoch transfer",
+    "V4_SWOT_ICESAT_DIRECT": "V4 — Direct SWOT ↔ ICESat-2 crossings",
+    "V5_LAKESP_PRODUCT": "V5 — LakeSP (supplementary)",
+    "V6_KHERSON_CLOSURE": "V6 — Kherson local closure",
+    "V7_DOWNSTREAM_POSTS_2023": "V7 · V8 · network — posts, surfaces, gauges",
+}
+
+ZONE_COLOURS = {"R": "#5b8fa8", "F": "#c1402a", "D": "#3f7d4e", "E": "#7a4f9e"}
+
+
+def gh(path: str | Path, kind: str = "blob") -> str:
+    """GitHub URL of a repository path (blob for files, tree for folders)."""
+    p = Path(path)
+    rel = p.relative_to(ROOT).as_posix() if p.is_absolute() else p.as_posix()
+    return f"{REPO_URL}/{kind}/{BRANCH}/{rel}"

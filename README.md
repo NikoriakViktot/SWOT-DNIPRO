@@ -1,3 +1,32 @@
+> **Paper 1 — "From impounded pool to river: quantifying the post-breach reorganisation of the former Kakhovka Reservoir from water-surface geometry"** · release `paper1-v6.2-rc5`
+>
+> | | |
+> |---|---|
+> | 📄 **Manuscript v6.2** | source [`outputs/paper/paper1_manuscript_en-v6.md`](outputs/paper/paper1_manuscript_en-v6.md) · `.docx` as a [release asset](https://github.com/NikoriakViktot/SWOT-DNIPRO/releases/tag/paper1-v6.2-rc5) |
+> | 🌐 **Interactive companion app** | https://swot-dnipro.streamlit.app (Streamlit Community Cloud, branch `paper1-release`) |
+> | 📊 **Validation evidence** | [`outputs/paper/validation/`](outputs/paper/validation/) — `ms7_summary.csv`, `ms7_evidence.csv`, `build_info.json` (paths V1–V8, audited against the text) |
+> | 🗺️ **Figures and maps** | [`outputs/paper/figures/`](outputs/paper/figures/) · analysis zones R/F/D/E in [`outputs/paper/zones/`](outputs/paper/zones/) |
+> | 📓 **Reproducibility / notebooks** | pipeline `scripts/ms5…ms8` (run order on the app's *Notebooks & reproducibility* page) · [`notebooks/`](notebooks/) |
+> | 💻 **Source code** | [`src/swot_dnipro/`](src/swot_dnipro/) · [`scripts/`](scripts/) · [`app/`](app/) |
+
+## Companion app — how to launch locally
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r app/requirements.txt
+streamlit run app/streamlit_app.py
+```
+
+The app reads only tracked outputs (`outputs/paper/validation`, `outputs/paper/zones`,
+`outputs/paper/app_data`, `outputs/paper/figures` and the manuscript), so it runs from a plain clone and
+on Streamlit Community Cloud (main file `app/streamlit_app.py`, requirements `app/requirements.txt`).
+Links and the production URL are set in one place, `app/lib/config.py`. To refresh its data after the
+analysis changes, run the pipeline listed on the app's *Notebooks & reproducibility* page and then
+`python app/prepare_app_data.py`; the per-date Sentinel-1 flood layer comes from the sibling `floodstate-eo`
+checkout via `python app/prepare_app_s1_layers.py`, and the ICESat-2 pass tracks via `python app/prepare_app_icesat2_passes.py`.
+
+---
+
 # swot_kakhovka — SWOT Satellite Data Downloader
 
 Автоматичне завантаження SWOT даних (NetCDF) через NASA CMR/Earthdata з Bearer Token

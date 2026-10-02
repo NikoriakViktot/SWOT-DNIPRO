@@ -1,0 +1,139 @@
+{
+  "purpose": "Analysis zones of paper 1 (R/F/D/E), frozen for submission.",
+  "built_by": "scripts/ms5_paper1_zones.py",
+  "built_utc": "2026-09-29T07:34:14+00:00",
+  "git_commit": "9419ea33339d9baba22107181397249968013b49",
+  "git_dirty": true,
+  "crs": "EPSG:32636",
+  "file": "outputs/paper/zones/paper1_zones_utm.geojson",
+  "construction": {
+    "corridor_buffer_km": 10.0,
+    "dam_cut_offset_m": 500.0,
+    "R_F_dam_easting_m": 527745.7517639496,
+    "F_D_kherson_easting_m": 470684.5173721555,
+    "D_E_delta_liman_easting_m": 443000.0,
+    "d_band_fragments_to_E_km2": 92.702,
+    "inputs": {
+      "dnipro_water_domain": "c1946d4501a95f7a",
+      "KAKHOVKA_RESERVOIR_CORE": "7d6357fead7fb11c",
+      "ZONE4_FLOOD_ENVELOPE_CANONICAL": "95b247588fc2e0b0"
+    }
+  },
+  "zones": {
+    "R_FORMER_KAKHOVKA_RESERVOIR": {
+      "letter": "R",
+      "label": "Reservoir",
+      "area_km2": 2144.0,
+      "geometry_hash_utm": "ec8f487a9c1e9aed",
+      "geometry_hash_4326": "2544f08797d4744d",
+      "n_parts": 2,
+      "legacy": "ZONE_1 subzone KAKHOVKA_RESERVOIR_CORE"
+    },
+    "F_LOWER_DNIPRO_FLOODWAY": {
+      "letter": "F",
+      "label": "Floodway",
+      "area_km2": 2900.2,
+      "geometry_hash_utm": "d658391e48d78e0a",
+      "geometry_hash_4326": "1d1b614226a440fe",
+      "n_parts": 1,
+      "legacy": "part of ZONE_1 below the dam; replaces ZONE_4 (event-defined) as the zone"
+    },
+    "D_KHERSON_DELTA": {
+      "letter": "D",
+      "label": "Delta",
+      "area_km2": 976.2,
+      "geometry_hash_utm": "3e2abb99b13cab77",
+      "geometry_hash_4326": "2ccb7ce427418b40",
+      "n_parts": 1,
+      "legacy": "ZONE_2 without its 5 km seam overlaps"
+    },
+    "E_DNIPRO_BUG_ESTUARY": {
+      "letter": "E",
+      "label": "Estuary",
+      "area_km2": 7460.2,
+      "geometry_hash_utm": "05a605acde2516d2",
+      "geometry_hash_4326": "08cc2ac161b26032",
+      "n_parts": 1,
+      "legacy": "ZONE_3 without its 5 km seam overlap"
+    }
+  },
+  "zones_total_km2": 13480.5,
+  "pairwise_overlap_km2": {
+    "R_FORMER_KAKHOVKA_RESERVOIR|F_LOWER_DNIPRO_FLOODWAY": 0.0,
+    "R_FORMER_KAKHOVKA_RESERVOIR|D_KHERSON_DELTA": 0.0,
+    "R_FORMER_KAKHOVKA_RESERVOIR|E_DNIPRO_BUG_ESTUARY": 0.0,
+    "F_LOWER_DNIPRO_FLOODWAY|D_KHERSON_DELTA": 0.0,
+    "F_LOWER_DNIPRO_FLOODWAY|E_DNIPRO_BUG_ESTUARY": 0.0,
+    "D_KHERSON_DELTA|E_DNIPRO_BUG_ESTUARY": 0.0
+  },
+  "overlap_tolerance_km2": 0.001,
+  "event_layers": {
+    "event_flood_2023_s1_envelope": {
+      "area_km2": 1333.6,
+      "geometry_hash_utm": "95b247588fc2e0b0",
+      "buffer_km": 0.0
+    },
+    "event_flood_2023_s1_envelope_1km": {
+      "area_km2": 3284.9,
+      "geometry_hash_utm": "ac608ee114ae396f",
+      "buffer_km": 1.0
+    }
+  },
+  "event_split_km2": {
+    "event_flood_2023_s1_envelope": {
+      "R_FORMER_KAKHOVKA_RESERVOIR": 173.37,
+      "F_LOWER_DNIPRO_FLOODWAY": 921.24,
+      "D_KHERSON_DELTA": 87.72,
+      "E_DNIPRO_BUG_ESTUARY": 0.0,
+      "outside_all_zones": 151.23,
+      "total": 1333.57
+    },
+    "event_flood_2023_s1_envelope_1km": {
+      "R_FORMER_KAKHOVKA_RESERVOIR": 178.71,
+      "F_LOWER_DNIPRO_FLOODWAY": 2094.03,
+      "D_KHERSON_DELTA": 158.41,
+      "E_DNIPRO_BUG_ESTUARY": 0.0,
+      "outside_all_zones": 853.8,
+      "total": 3284.94
+    }
+  },
+  "station_zone": {
+    "80977 Nova Kakhovka": "R",
+    "80971 Velyka Lepetykha": "R",
+    "80964 Nikopol": "R",
+    "80963 Blahovishchenka": "R",
+    "80959 Rozumivka": "R",
+    "80961 Plavni": "R",
+    "80805 Kherson": "D",
+    "80802 Nova Kakhovka (tailwater)": "F",
+    "80807 Kasperivka": "D",
+    "81801 Oleksandrivka": "none",
+    "98027 Mykolaiv": "E",
+    "98025 Parutyne": "E",
+    "98032 Stanislav": "E",
+    "98033 Heroiske": "E",
+    "98022 Ochakiv": "E"
+  },
+  "atl13_segments_in_R_fraction": 0.99,
+  "legacy_containers": {
+    "ZONE_1_KAKHOVKA_LOWER_DNIPRO": {
+      "area_km2": 11411.9,
+      "geometry_hash": "6f4a00f9259487a3"
+    },
+    "ZONE_2_KHERSON_DELTA": {
+      "area_km2": 1397.7,
+      "geometry_hash": "0a4960a47f556ee5"
+    },
+    "ZONE_3_DNIPRO_BUG_ESTUARY": {
+      "area_km2": 7621.3,
+      "geometry_hash": "a9e2015388fb8eb6"
+    },
+    "ZONE_4_DAM_TO_KHERSON_FLOODWAY": {
+      "area_km2": 6919.5,
+      "geometry_hash": "1987e8913fad2e89"
+    },
+    "ZONE_4_outside_ZONE_1_km2": 2752.7,
+    "ZONE_4_inside_ZONE_1_fraction": 0.6022,
+    "note": "Download/processing containers with 10 km seam overlaps. Not the paper's zones; retained unchanged for the S1 caches built on them."
+  }
+}

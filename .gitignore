@@ -41,7 +41,14 @@ data/index/*.parquet
 Thumbs.db
 
 # data
-data/
+# `data/*`, not `data/`: git will not descend into an excluded DIRECTORY, so a
+# negation inside it can never match. Excluding the entries instead leaves the
+# directory itself traversable.
+data/*
+# ...except the historical tables. These are hand-transcribed from photographed
+# monograph pages, no script can regenerate them, and the only other copy is the
+# photographs. A few kB, and losing them costs a full re-transcription.
+!data/historical/
 *.tif
 *.tiff
 *.nc
@@ -54,3 +61,11 @@ data/
 # logs
 logs/
 *.log
+
+data
+
+audit_runs/
+
+# paper 1: the .docx builds are release assets, not history; working copies stay local
+outputs/paper/*.docx
+outputs/paper/*.orig.md

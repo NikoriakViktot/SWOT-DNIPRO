@@ -1,0 +1,20 @@
+{
+  "built_by": "app/prepare_app_data.py",
+  "simplify_m": {
+    "zones": 50.0,
+    "flood": 100.0,
+    "water": 60.0
+  },
+  "sources": {
+    "zones": "outputs/paper/zones/paper1_zones_utm.geojson",
+    "water": "registry: dnipro_water_domain",
+    "atl13_transects": "outputs/figure_data/FigD_kakhovka_profile_points.csv (529bfcd5011c42b0)",
+    "evidence": "outputs/paper/validation/ms7_evidence.csv (03534ebcf47c57fa)",
+    "summary": "outputs/paper/validation/ms7_summary.csv (53bb7646444e477a)"
+  },
+  "dam": [
+    33.3667,
+    46.7783
+  ],
+  "zones_manifest": "outputs/paper/zones/paper1_zones_manifest.json"
+}
