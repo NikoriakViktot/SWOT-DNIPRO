@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 # --- PRODUCTION: replace after deployment -------------------------------------
 REPO_URL = "https://github.com/NikoriakViktot/SWOT-DNIPRO"
-BRANCH = "paper1-v6.2-rc4"           # links resolve on the release tag (immutable)
+BRANCH = "paper1-v6.2-rc5"           # links resolve on the release tag (immutable)
 APP_URL = "https://swot-dnipro.streamlit.app"   # Streamlit Community Cloud, branch paper1-release
-RELEASE_TAG = "paper1-v6.2-rc4"
+RELEASE_TAG = "paper1-v6.2-rc5"
 RELEASE_URL = f"{REPO_URL}/releases/tag/{RELEASE_TAG}"   # v6.docx is a release asset, not in git
 # ------------------------------------------------------------------------------
 

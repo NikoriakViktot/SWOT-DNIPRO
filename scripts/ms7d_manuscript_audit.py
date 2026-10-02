@@ -221,6 +221,14 @@ def claims() -> list[tuple[str, str]]:
     out.append(("heterogeneity detrended", f"from {hd.median_pre:.3f} m to {hd.median_post:.3f} m (difference {hd.diff_post_minus_pre:+.3f} m; "
                                            f"95 % CI [{hd.diff_ci_lo:+.3f}, {hd.diff_ci_hi:+.3f}] m)"))
     out.append(("heterogeneity table", f"{hd.median_pre:.3f} → {hd.median_post:.3f} m; difference {hd.diff_post_minus_pre:+.3f} m"))
+    # links: the release named in the text must be the one the app and README point at
+    import re as _re
+    _cfg = (ROOT / "app/lib/config.py").read_text()
+    _repo = _re.search(r'REPO_URL = "([^"]+)"', _cfg).group(1)
+    _tag = _re.search(r'RELEASE_TAG = "([^"]+)"', _cfg).group(1)
+    _app = _re.search(r'APP_URL = "([^"]+)"', _cfg).group(1)
+    out.append(("release link", f"release `{_tag}` ({_repo}/releases/tag/{_tag})"))
+    out.append(("app link", f"is available at {_app}."))
     M13 = pd.read_csv(VAL / "ms13_summary.csv").set_index("statistic").value
     out.append(("drawdown table", f"{M13['outlet_2023-05-31_m']:.2f} m → {M13['outlet_2023-06-13_m']:.2f} m in the gauge-anchored frame "
                                   f"tied to EVRF2019 (fall {M13['outlet_fall_m']:.2f} m)"))
@@ -276,7 +284,7 @@ PIPELINE = ["scripts/ms5_paper1_zones.py", "scripts/ms6_paper1_figures.py",
             "scripts/ms9_slope_sensitivity.py", "scripts/ms10_s2_fragmentation_sensitivity.py",
             "scripts/ms11_build_manuscript_docx.py", "scripts/ms12_heterogeneity.py", "scripts/ms13_drawdown_wave.py", "scripts/ms14_slope_figure.py",
             "app/prepare_app_data.py", "app/prepare_app_s1_layers.py", "app/prepare_app_icesat2_passes.py"]
-MANUSCRIPT_VERSION = "v6.2-rc4"
+MANUSCRIPT_VERSION = "v6.2-rc5"
 
 
 def write_build_info(md_path: Path, n_claims: int) -> None:
