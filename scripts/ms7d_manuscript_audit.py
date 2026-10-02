@@ -45,7 +45,7 @@ SUPERSEDED = [
     (r"reservoir gauge records end on 31 December 2021", ("five of the six",)),
     (r"reservoir series end on 31 December 2021", ("Five of the six",)),
 ]
-FIGS_FROM_TABLES = ["F16_closure_offsets.png", "F24_station_panels.png", "F27_covariability_main.png", "F28_water_levels_main.png",
+FIGS_FROM_TABLES = ["F02_slope_per_overpass.png", "F04_heterogeneity.png", "F15_swot_drawdown_and_wave.png", "F16_closure_offsets.png", "F24_station_panels.png", "F27_covariability_main.png", "F28_water_levels_main.png",
                     "FS_V4_swot_icesat_agreement.png", "F18_swot_icesat_whole_zone_map.png",
                     "F17_reference_surfaces.png", "F19_swot_icesat_egg2015_along_system.png",
                     "F20_vertical_chains.png", "F21_covariability_scatter.png",
@@ -213,6 +213,22 @@ def claims() -> list[tuple[str, str]]:
     # slope geoid sampling
     out.append(("slope contrast nearest", f"{float(B['contrast_nearest']):+.3f} cm/km".replace("-", "−")))
     out.append(("slope median dS", f"{float(B['post_median_abs_dS_cm_km']):.3f} cm/km"))
+    # heterogeneity (Section 4.4, Table 3, Figure 4): one source, ms12
+    H = pd.read_csv(VAL / "ms12_heterogeneity_summary.csv").set_index("metric")
+    hr, hd = H.loc["range_m"], H.loc["range_detrended_m"]
+    out.append(("heterogeneity raw", f"from {hr.median_pre:.3f} m before the breach to {hr.median_post:.3f} m afterwards, "
+                                     f"a difference of {hr.diff_post_minus_pre:+.3f} m (95 % CI [{hr.diff_ci_lo:+.3f}, {hr.diff_ci_hi:+.3f}] m)"))
+    out.append(("heterogeneity detrended", f"from {hd.median_pre:.3f} m to {hd.median_post:.3f} m (difference {hd.diff_post_minus_pre:+.3f} m; "
+                                           f"95 % CI [{hd.diff_ci_lo:+.3f}, {hd.diff_ci_hi:+.3f}] m)"))
+    out.append(("heterogeneity table", f"{hd.median_pre:.3f} → {hd.median_post:.3f} m; difference {hd.diff_post_minus_pre:+.3f} m"))
+    M13 = pd.read_csv(VAL / "ms13_summary.csv").set_index("statistic").value
+    out.append(("drawdown table", f"{M13['outlet_2023-05-31_m']:.2f} m → {M13['outlet_2023-06-13_m']:.2f} m in the gauge-anchored frame "
+                                  f"tied to EVRF2019 (fall {M13['outlet_fall_m']:.2f} m)"))
+    out.append(("drawdown prose", f"{M13['outlet_2023-05-31_m']:.1f} m on 31 May, {M13['outlet_2023-06-13_m']:.1f} m on 13 June 2023, "
+                                  f"a fall of {M13['outlet_fall_m']:.1f} m"))
+    out.append(("wave", f"a rise of {M13['rise_15km_m']:.2f} m 15–20 km below the dam (peak {M13['peak_15km_m']:.2f} m on 7 June)"))
+    out.append(("wave table", f"{M13['rise_15km_m']:.2f} m (peak {M13['peak_15km_m']:.2f} m on 2023-06-07)"))
+    out.append(("heterogeneity abstract", f"and still by {hd.diff_post_minus_pre:+.3f} m once a planar trend is removed"))
     return out
 
 
@@ -258,9 +274,9 @@ PIPELINE = ["scripts/ms5_paper1_zones.py", "scripts/ms6_paper1_figures.py",
             "scripts/ms7b_slope_geoid_sampling.py", "scripts/ms7c_validation_figures.py",
             "scripts/ms7d_manuscript_audit.py", "scripts/ms8_wind_setup_20230405.py",
             "scripts/ms9_slope_sensitivity.py", "scripts/ms10_s2_fragmentation_sensitivity.py",
-            "scripts/ms11_build_manuscript_docx.py",
+            "scripts/ms11_build_manuscript_docx.py", "scripts/ms12_heterogeneity.py", "scripts/ms13_drawdown_wave.py", "scripts/ms14_slope_figure.py",
             "app/prepare_app_data.py", "app/prepare_app_s1_layers.py", "app/prepare_app_icesat2_passes.py"]
-MANUSCRIPT_VERSION = "v6.2-rc3"
+MANUSCRIPT_VERSION = "v6.2-rc4"
 
 
 def write_build_info(md_path: Path, n_claims: int) -> None:

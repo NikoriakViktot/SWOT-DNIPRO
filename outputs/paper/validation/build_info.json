@@ -1,10 +1,10 @@
 {
-  "manuscript_version": "v6.2-rc3",
+  "manuscript_version": "v6.2-rc4",
   "manuscript": "outputs/paper/paper1_manuscript_en-v6.md",
-  "manuscript_sha256": "940f0f7435a918fd",
+  "manuscript_sha256": "acb86e5d89420130",
   "evidence_built_utc": "2026-09-29T12:04:51+00:00",
   "evidence_sha256": "03534ebcf47c57fa",
-  "pipeline_sha256": "8019a3e720ee9bb0",
+  "pipeline_sha256": "c2f5f94cf62a5916",
   "pipeline": [
     "scripts/ms5_paper1_zones.py",
     "scripts/ms6_paper1_figures.py",
@@ -17,13 +17,16 @@
     "scripts/ms9_slope_sensitivity.py",
     "scripts/ms10_s2_fragmentation_sensitivity.py",
     "scripts/ms11_build_manuscript_docx.py",
+    "scripts/ms12_heterogeneity.py",
+    "scripts/ms13_drawdown_wave.py",
+    "scripts/ms14_slope_figure.py",
     "app/prepare_app_data.py",
     "app/prepare_app_s1_layers.py",
     "app/prepare_app_icesat2_passes.py"
   ],
   "audit": "passed",
-  "audit_claims": 68,
-  "audited_utc": "2026-10-02T10:08:36+00:00",
-  "git_commit_at_audit": "4a4c7d2",
+  "audit_claims": 76,
+  "audited_utc": "2026-10-02T11:47:14+00:00",
+  "git_commit_at_audit": "5488218",
   "git_dirty_at_audit": true
 }

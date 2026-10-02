@@ -1,8 +1,8 @@
-> **Paper 1 — "From impounded pool to river: quantifying the post-breach reorganisation of the former Kakhovka Reservoir from water-surface geometry"** · release `paper1-v6.2-rc3`
+> **Paper 1 — "From impounded pool to river: quantifying the post-breach reorganisation of the former Kakhovka Reservoir from water-surface geometry"** · release `paper1-v6.2-rc4`
 >
 > | | |
 > |---|---|
-> | 📄 **Manuscript v6.2** | source [`outputs/paper/paper1_manuscript_en-v6.md`](outputs/paper/paper1_manuscript_en-v6.md) · `.docx` as a [release asset](https://github.com/NikoriakViktot/SWOT-DNIPRO/releases/tag/paper1-v6.2-rc3) |
+> | 📄 **Manuscript v6.2** | source [`outputs/paper/paper1_manuscript_en-v6.md`](outputs/paper/paper1_manuscript_en-v6.md) · `.docx` as a [release asset](https://github.com/NikoriakViktot/SWOT-DNIPRO/releases/tag/paper1-v6.2-rc4) |
 > | 🌐 **Interactive companion app** | https://swot-dnipro.streamlit.app (Streamlit Community Cloud, branch `paper1-release`) |
 > | 📊 **Validation evidence** | [`outputs/paper/validation/`](outputs/paper/validation/) — `ms7_summary.csv`, `ms7_evidence.csv`, `build_info.json` (paths V1–V8, audited against the text) |
 > | 🗺️ **Figures and maps** | [`outputs/paper/figures/`](outputs/paper/figures/) · analysis zones R/F/D/E in [`outputs/paper/zones/`](outputs/paper/zones/) |

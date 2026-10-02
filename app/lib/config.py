@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 # --- PRODUCTION: replace after deployment -------------------------------------
 REPO_URL = "https://github.com/NikoriakViktot/SWOT-DNIPRO"
-BRANCH = "paper1-v6.2-rc3"           # links resolve on the release tag (immutable)
+BRANCH = "paper1-v6.2-rc4"           # links resolve on the release tag (immutable)
 APP_URL = "https://swot-dnipro.streamlit.app"   # Streamlit Community Cloud, branch paper1-release
-RELEASE_TAG = "paper1-v6.2-rc3"
+RELEASE_TAG = "paper1-v6.2-rc4"
 RELEASE_URL = f"{REPO_URL}/releases/tag/{RELEASE_TAG}"   # v6.docx is a release asset, not in git
 # ------------------------------------------------------------------------------
 
@@ -52,6 +52,9 @@ PIPELINE = [
     ("scripts/ms9_slope_sensitivity.py", "Slope contrast: cluster bootstrap by ground track, paired tracks, season strata"),
     ("scripts/ms10_s2_fragmentation_sensitivity.py", "Sentinel-2 fragmentation: thresholds, minimum mapping unit, morphology"),
     ("scripts/ms11_build_manuscript_docx.py", "The manuscript .docx from the audited Markdown (pandoc)"),
+    ("scripts/ms12_heterogeneity.py", "Within-date water-surface heterogeneity, raw and detrended; Figure 4"),
+    ("scripts/ms13_drawdown_wave.py", "Outlet drawdown and flood wave from SWOT in the paper's vertical tie; Figure 2"),
+    ("scripts/ms14_slope_figure.py", "Per-overpass slope with intervals and the two distributions; Figure 3"),
     ("app/prepare_app_data.py", "The light data layer this app reads"),
     ("app/prepare_app_s1_layers.py", "The per-date Sentinel-1 flood layer, copied from floodstate-eo (p94/p98)"),
     ("app/prepare_app_icesat2_passes.py", "ICESat-2 passes as ground tracks: ATL13 (three samples) and ATL08 (k10 terrain)"),
@@ -62,14 +65,16 @@ FIGURE_STATUS = {
     "F00_study_area.png": ("recomputed", "scripts/ms6_paper1_figures.py"),
     "F18_swot_icesat_whole_zone_map.png": ("recomputed", "scripts/ms6_paper1_figures.py"),
     "FS_V4_swot_icesat_agreement.png": ("recomputed", "scripts/ms7_validation_paths.py"),
+    "F04_heterogeneity.png": ("recomputed", "scripts/ms12_heterogeneity.py"),
+    "F15_swot_drawdown_and_wave.png": ("recomputed", "scripts/ms13_drawdown_wave.py"),
+    "F02_slope_per_overpass.png": ("recomputed", "scripts/ms14_slope_figure.py"),
     **{f: ("recomputed", "scripts/ms7c_validation_figures.py") for f in (
         "F16_closure_offsets.png", "F17_reference_surfaces.png", "F19_swot_icesat_egg2015_along_system.png",
         "F20_vertical_chains.png", "F21_covariability_scatter.png", "F22_gauge_network_correlation.png",
         "F23_slope_frame_invariance.png", "F24_station_panels.png", "F25_breach_fortnight_posts.png",
         "F26_downstream_posts_2023.png", "F27_covariability_main.png", "F28_water_levels_main.png")},
     # slope / heterogeneity / drawdown figures: checked against the tables, unchanged
-    **{f: ("verified — v5 image consistent with the tables", None) for f in (
-        "F02_slope_per_overpass.png", "F04_heterogeneity.png", "F15_swot_drawdown_and_wave.png")},
+
 }
 DEFAULT_STATUS = ("carried from v5 — pending final rebuild", None)
 

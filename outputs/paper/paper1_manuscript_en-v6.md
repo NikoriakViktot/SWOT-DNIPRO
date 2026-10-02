@@ -8,7 +8,7 @@
 
 **Method.** We combine twelve hydrological posts (seven long daily gauge records and five estuary posts of the 2023 sea yearbook), ICESat-2 ATL13 laser altimetry, SWOT radar interferometry, Sentinel-2 water masks and a 1970 field survey of the reservoir surface. The gauges are transformed to EVRF2019; the satellite heights are restored to the ellipsoid and reduced with the EGG2015 quasigeoid, with permanent-tide conventions handled explicitly. The two branches are compared through a measured local closure residual rather than an assumed datum transformation. Per-overpass water-surface slopes are estimated with a Theil–Sen fit; one overpass is the independent unit. Data sources of independent origin are tested against each other before interpretation, with calibration, validation and sensitivity paths kept apart.
 
-**Results.** Before the breach the pool was near-level: median per-overpass slope +0.090 cm/km, 10 of 14 overpasses positive, consistent with the 1970 survey. After the breach every overpass carries a positive downstream gradient: median +3.314 cm/km, 14 of 14 positive; difference +3.223 cm/km (95 % CI [+1.994, +5.071] cm/km; permutation p = 1.00e-04). The gradient was already present in the first passes after drainage (July–September 2023, median +3.245 cm/km) and persists through 2025. Within-overpass water-surface heterogeneity rose from 0.117 m to 0.397 m (+0.280 m), and still by +0.166 m once a planar trend is removed from each overpass, so it is not the gradient alone. A single connected surface of 2 129 km² became a median of 503 disconnected bodies totalling 289 km². SWOT recorded the outlet through the drawdown itself: 17.6 m on 31 May, 5.7 m on 13 June (gauge-anchored frame tied to EVRF2019). Gauges, the two altimeters and the historical survey — independent sensors and cross-checks with distinct error structures, partly sharing the gauges and the quasigeoid — agree at the centimetre-to-decimetre level, the measured along-reach gradient of their closure is far smaller than the observed slope contrast, and that contrast is the same in every vertical frame tested.
+**Results.** Before the breach the pool was near-level: median per-overpass slope +0.090 cm/km, 10 of 14 overpasses positive, consistent with the 1970 survey. After the breach every overpass carries a positive downstream gradient: median +3.314 cm/km, 14 of 14 positive; difference +3.223 cm/km (95 % CI [+1.994, +5.071] cm/km; permutation p = 1.00e-04). The gradient was already present in the first passes after drainage (July–September 2023, median +3.245 cm/km) and persists through 2025. Within-overpass water-surface heterogeneity rose from 0.117 m to 0.397 m (+0.280 m), and still by +0.163 m once a planar trend is removed from each date, so it is not the gradient alone. A single connected surface of 2 129 km² became a median of 503 disconnected bodies totalling 289 km². SWOT recorded the outlet through the drawdown itself: 17.6 m on 31 May, 5.7 m on 13 June (gauge-anchored frame tied to EVRF2019). Gauges, the two altimeters and the historical survey — independent sensors and cross-checks with distinct error structures, partly sharing the gauges and the quasigeoid — agree at the centimetre-to-decimetre level, the measured along-reach gradient of their closure is far smaller than the observed slope contrast, and that contrast is the same in every vertical frame tested.
 
 **Conclusions.** We quantify the persistent reorganisation of water-surface geometry across the former Kakhovka Reservoir footprint, from the impounded to the post-drainage state. Following the abrupt loss of impoundment, the observed water surface of the >2 000 km² system changed from a near-level connected pool to a persistently downstream-sloping and fragmented one, and the new gradient was already present within weeks of depletion. The change is in the spatial organisation of the water surface, not only in its area, and it becomes measurable once gauges, satellites and legacy hydrography are placed in a common observational framework through explicit vertical reductions and an empirically validated local closure.
 
@@ -70,7 +70,7 @@ Every gauge value in this paper is a daily value, never a reading taken at the t
 
 ## 2.3 ICESat-2 ATL13
 
-ATL13 Release 007 water-surface heights (`ht_water_surf`; ITRF2020, tide-free; NSIDC, 2025a) are the observation used throughout. They enter three disjoint samples that must not be confused or summed: the slope sample (14 pre-breach, 5 drawdown and 14 post-breach overpasses with a chainage span of at least 20 km), the heterogeneity sample (all ATL13 dates in the footprint: 192 pre, 23 post) and the exposed-bed sample (28 tracks).
+ATL13 Release 007 water-surface heights (`ht_water_surf`; ITRF2020, tide-free; NSIDC, 2025a) are the observation used throughout. They enter three disjoint samples that must not be confused or summed: the slope sample (14 pre-breach, 5 drawdown and 14 post-breach overpasses with a chainage span of at least 20 km), the heterogeneity sample (every ATL13 date in the footprint with at least 30 water segments — the whole pool before the breach, the main and connected channels after it: 192 pre, 23 post) and the exposed-bed sample (28 tracks).
 
 ## 2.4 SWOT
 
@@ -94,7 +94,7 @@ Two geodetic resources enter the chain. For the gauge branch: the grid `ua_2019z
 |---|---|---|
 | Gauges (Baltic 1977 stage series): six reservoir gauges and Kherson; Mykolaiv and four further estuary posts from the 2023 sea yearbook | Vertical anchor; temporal validation | 7 gauges + 5 sea-yearbook posts |
 | ICESat-2 ATL13, slope sample (≥20 km span) | Per-overpass longitudinal slope, pre / post | 14 / 14 overpasses (+5 drawdown) |
-| ICESat-2 ATL13, heterogeneity sample (all footprint dates) | Within-overpass p95–p05 range | 192 pre / 23 post dates |
+| ICESat-2 ATL13, heterogeneity sample (footprint dates; post-breach on connected channels) | Within-date p95–p05 range | 192 pre / 23 post dates |
 | ICESat-2 ATL13/ATL08, exposed dry-bed sample | Historical datum check | 28 tracks |
 | SWOT PIXC/RiverSP | Drawdown, flood wave, cross-sensor and gauge validation | 1023 PIXC–RiverSP pairs; 28 RiverSP crossings with ICESat-2 within 24 h; 67 passes at Rozumivka |
 | Sentinel-2 L2A, coverage-gated water masks | Planform connectivity, pre / post | 53 dates; 1 pre / 4 post admitted |
@@ -122,7 +122,7 @@ Reservoir profiles use a centreline built from the reservoir polygon by principa
 
 ## 3.3 Heterogeneity, planform and historical baseline
 
-Heterogeneity is the within-overpass p95–p05 range of water-surface elevation on all ATL13 dates in the footprint; it is not a standard deviation and not the within-profile range of the slope sample. Water masks follow a frozen NDWI/MNDWI/scene-classification rule; a coverage gate admits a date to the pre/post planform contrast only when at least 80 % of the footprint is observed. The reduction level of the S-57 soundings is tested by three independent routes (Section 5.4, Supplementary Section S4). The 1970 free-surface curve is digitised from the monograph figure and validated against the tabulated backwater profile.
+Heterogeneity is the within-date p95–p05 range of water-surface elevation over the ATL13 segments of each date in the footprint — every segment on the pool before the breach, the segments on the main and connected channels after it, so that residual water bodies at other levels do not enter; it is computed raw and about a robust planar trend fitted to each date, and it is neither a standard deviation nor the range of the six beam medians of the slope sample. Water masks follow a frozen NDWI/MNDWI/scene-classification rule; a coverage gate admits a date to the pre/post planform contrast only when at least 80 % of the footprint is observed. The reduction level of the S-57 soundings is tested by three independent routes (Section 5.4, Supplementary Section S4). The 1970 free-surface curve is digitised from the monograph figure and validated against the tabulated backwater profile.
 
 ## 3.4 Validation design
 
@@ -140,20 +140,20 @@ On 5 June 2023, the last full-coverage Sentinel-2 date before the breach, the po
 
 ## 4.2 The drawdown and the flood wave from orbit
 
-The flood below the dam has been described from SWOT and used to test outburst-flood models (Lehnigk et al., 2026). What we add is the outlet itself, in the same vertical frame as the gauges. Heights in this section are EGG2015-referenced SWOT heights shifted by the closure residual into the gauge-anchored frame tied to EVRF2019 (H_S + c). Because the calibration orbit repeated daily over the outlet, the emptying of the pool was recorded directly: 17.6 m on 31 May, 5.7 m on 13 June 2023, a fall of 11.9 m (n = 3 SWOT nodes on the date; Table 2). Below the dam the same passes describe the wave that carried that water away: a rise of 9.10 m at 15 km (peak 10.31 m on 7 June), decaying to about two metres by 80 km. Both series are snapshots from a handful of nodes per date (1–3, some dates on a single node). We read them as a sequence of observed water surfaces, not as a hydrograph.
+The flood below the dam has been described from SWOT and used to test outburst-flood models (Lehnigk et al., 2026). What we add is the outlet itself, in the same vertical frame as the gauges. Heights in this section are EGG2015-referenced SWOT heights shifted by the closure residual into the gauge-anchored frame tied to EVRF2019 (H_S + c, with c = −0.135 m, the reservoir closure residual of Section 5.1). Because the calibration orbit repeated daily over the outlet, the emptying of the pool was recorded directly: 17.6 m on 31 May, 5.7 m on 13 June 2023, a fall of 11.9 m (one SWOT node on 31 May, three on 13 June; Table 2). Below the dam the same passes describe the wave that carried that water away: a rise of 9.10 m 15–20 km below the dam (peak 10.28 m on 7 June), decaying to about two metres by 80 km. The outlet series rests on one to three nodes per date. We read them as a sequence of observed water surfaces, not as a hydrograph.
 
 **Table 2. The drawdown and the flood wave, as recorded by SWOT.**
 
 | Quantity | Value | n |
 |---|---|---|
-| Outlet water surface, 31 May → 13 June 2023 | 17.61 m → 5.71 m in the gauge-anchored frame tied to EVRF2019 (fall 11.90 m) | 3 SWOT nodes on the date |
-| Rise above the pre-breach surface, 15 km below the dam | 9.10 m (peak 10.31 m on 2023-06-07) | 48 nodes in the bin |
+| Outlet water surface, 31 May → 13 June 2023 | 17.57 m → 5.67 m in the gauge-anchored frame tied to EVRF2019 (fall 11.90 m) | 1 / 3 SWOT nodes on the two dates |
+| Rise above the pre-breach surface, 15–20 km below the dam | 9.10 m (peak 10.28 m on 2023-06-07) | 48 nodes in the bin |
 
 *Heights are EGG2015-referenced SWOT heights shifted by the empirical closure residual into the gauge-anchored frame tied to EVRF2019 (H_S + c); they are not EVRF2019 heights in the geodetic sense. Each absolute level carries the 0.068 m grid accuracy of EPSG:9902, the closure residual and the collocation uncertainty, so the fall of 11.90 m is robust while the last centimetre of each level is not.*
 
 ![](figures/F15_swot_drawdown_and_wave.png)
 
-**Figure 2.** The breach fortnight from orbit. (a) Outlet water surface against the upstream gauge, 28 May – 30 June 2023, in the common vertical frame. (b) Rise above the pre-breach surface with distance below the dam.
+**Figure 2.** The breach fortnight from orbit. (a) SWOT water surface at the outlet (median of the nodes on each date; band: their range) against the Rozumivka gauge, 31 May – 22 June 2023, in the gauge-anchored frame tied to EVRF2019. (b) Peak rise of the water surface above its pre-breach level (25 May – 5 June) with distance below the dam, in 5 km bins.
 
 ## 4.3 After the breach: a persistent downstream gradient
 
@@ -175,8 +175,8 @@ Every post-breach overpass from January 2024 to November 2025 carries a positive
 | Slope, 30 km minimum span | +0.112 → +3.314 cm/km; difference 3.202 | — | 4 pre / 6 post |
 | Slope, channel-restricted control | difference +1.109 cm/km | 95 % CI [−0.086, +2.186]; permutation p = 0.0009; post positive 4/6 | 20 pre / 6 post |
 | Per-overpass interval half-width (median) | 2.129 → 21.545 cm/km | passes excluding zero individually: 0/14 → 3/14 | 14 / 14 |
-| Within-overpass heterogeneity (p95 − p05) | 0.117 → 0.397 m; difference +0.280 m | 95 % CI [+0.138, +0.367] m; permutation p = 5.00e-05; Mann–Whitney p = 1.57e-11 | 192 pre / 23 post |
-| Heterogeneity with planar trend removed | 0.103 → 0.269 m; difference +0.166 m | 95 % CI [+0.119, +0.221] m; permutation p = 5e-05 | 192 pre / 23 post |
+| Within-date heterogeneity (p95 − p05) | 0.117 → 0.397 m; difference +0.280 m | 95 % CI [+0.138, +0.367] m; permutation p = 5.00e-05; Mann–Whitney p = 1.57e-11 | 192 pre / 23 post |
+| Heterogeneity with planar trend removed | 0.106 → 0.269 m; difference +0.163 m | 95 % CI [+0.114, +0.216] m; permutation p = 5e-05 | 192 pre / 23 post |
 | Planform: water bodies and area | 2 bodies, 2 129 km², largest 99.995 % → median 503 bodies, 289 km², largest 58.2 % | post-breach range 161–634 bodies; largest-component fraction 31.5–80.6 % | 1 pre / 4 post dates |
 | Residual water bodies relative to the channel stem | median offset −0.595 m | NMAD 0.459 m; p05 −1.19, p95 +0.51 m; 15.3 % above the stem | 678 |
 
@@ -186,11 +186,13 @@ Every post-breach overpass from January 2024 to November 2025 carries a positive
 
 ## 4.4 Increased heterogeneity of the water surface
 
-On all ATL13 dates in the footprint, the within-overpass p95–p05 range of water-surface elevation rose from 0.117 m to 0.397 m (difference +0.280 m; 95 % CI [+0.138, +0.367] m; permutation p = 5.00e-05; Mann–Whitney p = 1.57e-11; 192 pre / 23 post). The metric is computed on the full ATL13 sample and is distinct from the slope sample. It is not independent of the gradient, because a steeper surface spreads the heights within an overpass. With a robust planar trend removed from each overpass the increase remains, smaller: 0.103 m → 0.269 m (difference +0.166 m; 95 % CI [+0.119, +0.221] m). Part of the rise in heterogeneity is the new gradient; the rest is spread about it.
+Water-surface elevations became substantially more variable after the breach. The median within-date p95–p05 range of ICESat-2 water-surface elevation increased from 0.117 m before the breach to 0.397 m afterwards, a difference of +0.280 m (95 % CI [+0.138, +0.367] m). Before the breach the range is taken over every segment on the pool; after it, over the segments on the main channel and the channels connected to it, so that it describes the connected river system and not the height differences between separate residual water bodies (192 pre / 23 post dates; Table 3).
+
+Part of this increase reflects the newly developed downstream gradient. However, after removing a robust planar trend from each date, the p95–p05 range still increased from 0.106 m to 0.269 m (difference +0.163 m; 95 % CI [+0.114, +0.216] m). The post-breach water surface was therefore more heterogeneous not only because it was more strongly sloping, but also because elevations varied more around that overall gradient.
 
 ![](figures/F04_heterogeneity.png)
 
-**Figure 4.** Within-overpass water-surface heterogeneity (p95 − p05) by date. Horizontal bars are period medians. The metric uses every ATL13 date in the footprint, not only those with a 20 km span.
+**Figure 4.** Within-date variability of ICESat-2 water-surface elevations through time, expressed as the p95–p05 range (logarithmic axis). Horizontal lines indicate the pre- and post-breach medians; observations during the 2023 drawdown are shown separately. Before the breach every segment on the pool enters; after it, the main and connected channels.
 
 ## 4.5 Fragmentation of the water surface
 
@@ -294,7 +296,7 @@ This study quantifies the persistent reorganisation of water-surface geometry ac
 
 **Analysis tables.** Every number in the main text and Supplement is generated from a versioned evidence table with a claim identifier that points at the analysis snapshot; the tables and processing code are available from the authors' repository.
 
-**Validation evidence.** The validation numbers of Sections 5 and S3 are generated by `scripts/ms7_validation_paths.py` into a row-level evidence table (`outputs/paper/validation/ms7_evidence.csv`, claim identifiers V1–V6) and a summary; `scripts/ms7d_manuscript_audit.py` regenerates every stated value from those tables and checks it against this text, and Figures 5, 6 and S1–S11 are drawn from the same tables; the wind diagnostic of Section S3.5 is produced by `scripts/ms8_wind_setup_20230405.py` from the ERA5 extract it writes beside its table, the track-cluster and season tests of Section 4.3 by `scripts/ms9_slope_sensitivity.py`, and the mask-parameter sensitivity of Section 4.5 by `scripts/ms10_s2_fragmentation_sensitivity.py`. Bootstrap intervals use 10 000 resamples seeded from the data. Satellite heights are reduced with EGG2015 interpolated bilinearly: nearest-cell sampling of the 1′ grid introduces artificial centimetre-scale steps between points about 200 m apart, which is why crossing differences must interpolate; the headline slopes are insensitive to it (Section 5.5).
+**Validation evidence.** The validation numbers of Sections 5 and S3 are generated by `scripts/ms7_validation_paths.py` into a row-level evidence table (`outputs/paper/validation/ms7_evidence.csv`, claim identifiers V1–V6) and a summary; `scripts/ms7d_manuscript_audit.py` regenerates every stated value from those tables and checks it against this text, and Figures 5, 6 and S1–S11 are drawn from the same tables; the wind diagnostic of Section S3.5 is produced by `scripts/ms8_wind_setup_20230405.py` from the ERA5 extract it writes beside its table, the track-cluster and season tests of Section 4.3 by `scripts/ms9_slope_sensitivity.py`, and the mask-parameter sensitivity of Section 4.5 by `scripts/ms10_s2_fragmentation_sensitivity.py`, the heterogeneity of Section 4.4 with Figure 4 by `scripts/ms12_heterogeneity.py`, and the drawdown and flood-wave levels of Section 4.2 with Figure 2 by `scripts/ms13_drawdown_wave.py`. Bootstrap intervals use 10 000 resamples seeded from the data. Satellite heights are reduced with EGG2015 interpolated bilinearly: nearest-cell sampling of the 1′ grid introduces artificial centimetre-scale steps between points about 200 m apart, which is why crossing differences must interpolate; the headline slopes are insensitive to it (Section 5.5).
 
 **Analysis zones.** The four zones are frozen as one GeoJSON in EPSG:32636 (`outputs/paper/zones/paper1_zones_utm.geojson`), built by `scripts/ms5_paper1_zones.py` from registered source geometries only; the areas and SHA-256 content prefixes of the frozen geometries are R 2 144.0 km² (`ec8f487a9c1e9aed`); F 2 900.2 km² (`d658391e48d78e0a`); D 976.2 km² (`3e2abb99b13cab77`); E 7 460.2 km² (`05a605acde2516d2`). Pairwise overlaps are asserted below 0.001 km² and checked by an automated test against the manifest (`paper1_zones_manifest.json`), which also records the source-geometry hashes and the split of the June 2023 flood envelope across the zones.
 
@@ -555,7 +557,7 @@ We fit the per-overpass slopes to ICESat-2 heights reduced with EGG2015 and the 
 ## S6. The three ICESat-2 samples
 
 
-The slope, heterogeneity and exposed-bed analyses draw on different subsets of the same archive and must not be conflated. The slope sample admits an overpass only if its chainage span reaches 20 km. The heterogeneity sample takes every ATL13 date in the footprint. The exposed-bed sample is a ground-return set with no water in it at all. Sample sizes are given per claim in Tables 1, 3, S1 and S2.
+The slope, heterogeneity and exposed-bed analyses draw on different subsets of the same archive and must not be conflated. The slope sample admits an overpass only if its chainage span reaches 20 km. The heterogeneity sample takes every ATL13 date in the footprint with at least 30 water segments (after the breach, on the main and connected channels). The exposed-bed sample is a ground-return set with no water in it at all. Sample sizes are given per claim in Tables 1, 3, S1 and S2.
 
 # REFERENCES
 
